@@ -1,7 +1,93 @@
-﻿namespace FlightManagementSystem
+﻿using FlightManagementSystem.Models;
+using Microsoft.Win32;
+using System.Numerics;
+
+namespace FlightManagementSystem
 {
     internal class Program
     {
+        public static FlightContext context = new FlightContext
+        {
+
+            Passengers = new List<Passenger>(),
+              Pilots   = new  List <Pilot>(),
+              Aircrafts =  new  List<Aircraft>() ,
+              Flights   =new   List<Flight>(),
+              Bookings = new List<Booking>(),
+
+
+
+    };
+
+
+        public static void RegisterPassenger()
+        {
+            Console.WriteLine("Enter passenger name");
+            string name = Console.ReadLine();
+            Console.Write("Enter Email: ");
+
+            string email = Console.ReadLine();
+
+            Console.Write("Enter Phone: ");
+
+            string phone = Console.ReadLine();
+
+            Console.Write("Enter Passport Number: ");
+
+            string passport = Console.ReadLine();
+
+            Console.Write("Enter Nationality: ");
+
+            string nationality = Console.ReadLine();
+
+            int passengerId = context.Passengers.Count + 1;
+
+            Passenger passenger = new Passenger
+
+            {
+
+                passengerId = passengerId,
+
+                passengerName = name,
+
+                passengerEmail = email,
+
+                passengerPhone = phone,
+
+                passportNumber = passport,
+
+                nationality = nationality
+
+            };
+
+            context.Passengers.Add(passenger);
+
+            Console.WriteLine("Passenger Registered Successfully");
+
+            Console.WriteLine("Passenger ID: {passengerId}");
+
+        }
+
+
+
+
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         static void Main(string[] args)
         {
 
@@ -34,6 +120,10 @@
                 {
 
                     case 1:
+
+
+
+
 
                         break;
 
