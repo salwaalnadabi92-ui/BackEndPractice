@@ -64,7 +64,7 @@ namespace FlightManagementSystem
 
             Console.WriteLine("Passenger Registered Successfully");
 
-            Console.WriteLine("Passenger ID: {passengerId}");
+            Console.WriteLine("Passenger ID:" +passengerId);
 
         }
 
@@ -101,7 +101,7 @@ namespace FlightManagementSystem
 
             Console.WriteLine("Aircraft Added Successfully");
 
-            Console.WriteLine($"Aircraft ID: {aircraftId}");
+            Console.WriteLine("Aircraft ID:" +aircraftId);
 
 
         }
@@ -111,12 +111,59 @@ namespace FlightManagementSystem
 
 
         // Register a Pilot
+        public static void RegisterPilot()
+        {
 
+            Console.Write("Enter Pilot Name: ");
 
+            string name = Console.ReadLine();
 
+            Console.Write("Enter Pilot Phone: ");
+
+            string phone = Console.ReadLine();
+
+            Console.Write("Enter License Number: ");
+
+            string license = Console.ReadLine();
+
+            int pilotId = context.Pilots.Count + 1;
+
+            Pilot pilot = new Pilot
+
+            {
+
+                pilotId = pilotId,
+
+                pilotName = name,
+
+                pilotPhone = phone,
+
+                licenseNumber = license,
+
+                flightHours = 0,
+
+                isAvailable = true
+
+            };
+
+            context.Pilots.Add(pilot);
+
+            Console.WriteLine("Pilot Registered Successfully");
+
+            Console.WriteLine("Pilot ID:" +pilotId);
+
+        }
 
 
         // View All Flights
+
+
+
+
+
+
+
+
 
 
 
