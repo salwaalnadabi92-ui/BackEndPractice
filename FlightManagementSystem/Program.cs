@@ -19,7 +19,7 @@ namespace FlightManagementSystem
 
     };
 
-
+        // Register a Passenger
         public static void RegisterPassenger()
         {
             Console.WriteLine("Enter passenger name");
@@ -69,22 +69,54 @@ namespace FlightManagementSystem
         }
 
 
+        // Add an Aircraft
+        public static void AddAircraft()
+        {
+
+            Console.Write("Enter Aircraft Model: ");
+
+            string model = Console.ReadLine();
+
+            Console.Write("Enter Total Seats: ");
+
+            int totalSeats = Convert.ToInt32(Console.ReadLine());
+
+            int aircraftId = context.Aircrafts.Count + 1;
+
+
+            Aircraft aircraft = new Aircraft
+
+            {
+                aircraftId = aircraftId,
+
+                model = model,
+
+                totalSeats = totalSeats,
+
+                isOperational = true
+
+            };
+
+            context.Aircrafts.Add(aircraft);
+
+            Console.WriteLine("Aircraft Added Successfully");
+
+            Console.WriteLine($"Aircraft ID: {aircraftId}");
+
+
+        }
 
 
 
-        
-            
+
+
+        // Register a Pilot
 
 
 
 
 
-
-
-
-
-
-
+        // View All Flights
 
 
 
@@ -121,7 +153,7 @@ namespace FlightManagementSystem
 
                     case 1:
 
-
+                        RegisterPassenger();
 
 
 
