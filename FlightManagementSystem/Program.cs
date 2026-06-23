@@ -19,9 +19,11 @@ namespace FlightManagementSystem
 
     };
 
-        // Register a Passenger
+        //1 Register a Passenger
         public static void RegisterPassenger()
         {
+
+            Console.WriteLine("Add New Passenger");
             Console.WriteLine("Enter passenger name");
             string name = Console.ReadLine();
             Console.Write("Enter Email: ");
@@ -69,7 +71,7 @@ namespace FlightManagementSystem
         }
 
 
-        // Add an Aircraft
+        // 2 Add an Aircraft
         public static void AddAircraft()
         {
 
@@ -110,7 +112,7 @@ namespace FlightManagementSystem
 
 
 
-        // Register a Pilot
+        // 3 Register a Pilot
         public static void RegisterPilot()
         {
 
@@ -155,8 +157,36 @@ namespace FlightManagementSystem
         }
 
 
-        // View All Flights
+        // 4 View All Flights
+        public static void ViewAllFlight()
+        {
+            foreach( Flight  f in context.Flights )
 
+            {
+                Console.WriteLine("------------------------");
+
+                Console.WriteLine("Flight Code :" +f.flightCode);
+
+                Console.WriteLine("Origin: " +f.origin);
+
+                Console.WriteLine("Destination:" +f.destination);
+
+                Console.WriteLine("Departure Date:" + f.departureDate);
+
+                Console.WriteLine($"Departure Time:" +f.departureTime);
+
+                //Console.WriteLine("Available Seats:" +f.availableSeats);
+
+                Console.WriteLine($"Ticket Price: " +f.ticketPrice);
+
+                Console.WriteLine("Status: " + f.status);
+
+
+            }
+
+
+
+        }
 
 
 
@@ -180,16 +210,16 @@ namespace FlightManagementSystem
                 Console.WriteLine("FLIGHT MANAGEMENT SYSTEM ");
                 Console.WriteLine(" =======================================");
                 Console.WriteLine("1.Register a Passenger ");
-                Console.WriteLine("2. Add an Aircraft ");
+                Console.WriteLine("2.Add an Aircraft ");
                 Console.WriteLine("3.Register a Pilot");
                 Console.WriteLine("4.View All Flights ");
-                Console.WriteLine("5. Schedule a Flight ");
+                Console.WriteLine("5.Schedule a Flight ");
                 Console.WriteLine("6.Book a Flight");
                 Console.WriteLine("7.Cancel a Booking ");
                 Console.WriteLine("8.Depart a Flight");
                 Console.WriteLine("9.Cancel a Flight");
                 Console.WriteLine("10.Passenger Booking History");
-                Console.WriteLine("11. Flight Revenue & Load Factor Report");
+                Console.WriteLine("11.Flight Revenue & Load Factor Report");
                 Console.WriteLine("0.Exit");
                 Console.WriteLine("========================================");
                 Console.WriteLine("  Enter your choose");
@@ -201,19 +231,20 @@ namespace FlightManagementSystem
                     case 1:
 
                         RegisterPassenger();
-
-
-
                         break;
 
                     case 2:
+                        AddAircraft();
                         break;
 
                     case 3:
+                         RegisterPilot();
                         break;
 
 
                     case 4:
+                        ViewAllFlight();
+
                         break;
 
                     case 5:
@@ -245,12 +276,17 @@ namespace FlightManagementSystem
 
 
                 }//switch
+
+                Console.WriteLine(" Enter any key");
+                Console.ReadKey();
+                Console.Clear();
+
             }//while
 
 
 
-
-
+           
+            
 
 
 
