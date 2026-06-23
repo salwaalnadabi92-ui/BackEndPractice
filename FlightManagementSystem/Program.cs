@@ -24,7 +24,7 @@ namespace FlightManagementSystem
         {
 
             Console.WriteLine("Add New Passenger");
-            Console.WriteLine("Enter passenger name");
+            Console.WriteLine("Enter Full Name");
             string name = Console.ReadLine();
             Console.Write("Enter Email: ");
 
@@ -35,8 +35,15 @@ namespace FlightManagementSystem
             string phone = Console.ReadLine();
 
             Console.Write("Enter Passport Number: ");
-
             string passport = Console.ReadLine();
+
+            bool result = context.Passengers.Any(p => p.passportNumber == passport);
+                          if (result == true)
+            {
+                Console.WriteLine("passport already exites ");
+                return;
+            }
+
 
             Console.Write("Enter Nationality: ");
 
@@ -75,7 +82,7 @@ namespace FlightManagementSystem
         public static void AddAircraft()
         {
 
-            Console.Write("Enter Aircraft Model: ");
+            Console.Write("Enter Aircraft Model ( Boeing 737, Airbus A320)   : ");
 
             string model = Console.ReadLine();
 
@@ -188,8 +195,99 @@ namespace FlightManagementSystem
 
         }
 
+        //5 Schedule a Flight
+        public static void ScheduleFlight()
 
 
+        {
+
+            Console.WriteLine("____ScheduleFlight_______");
+             var Aircrafts = context.Aircrafts.Where(f => f.isOperational).ToList();
+
+            if(Aircrafts.Count == 0)
+
+            {
+                Console.WriteLine("No aviaable flight ");
+            }
+
+            Console.WriteLine(" enter aircraft id");
+            int aircraftid=int.Parse(Console.ReadLine());
+
+            var selectAircraft = context.Aircrafts.FirstOrDefault(a => a.aircraftId == aircraftid);
+            if (selectAircraft != null)
+            {
+                Console.WriteLine("invaild aircraft");
+
+                return;
+
+                 }
+
+            var poilt= context.Pilots.Where(p => p.isAvailable).ToList();
+
+            if (poilt.Count == 0)
+
+            {
+                Console.WriteLine("No poilt avaiable ");
+            }
+
+            Console.WriteLine(" enter apoilt id");
+            int poiltId=int.Parse(Console.ReadLine());
+
+
+
+            var selectpoilt = context.Pilots.FirstOrDefault(p => p.pilotId == poiltId);
+            if (selectpoilt != null)
+            {
+                Console.WriteLine("invaild poilt");
+
+                return;
+
+            }
+
+            Console.WriteLine("------------------------");
+            Console.WriteLine("Flight Recored");
+            Console.WriteLine("------------------------");
+            Console.WriteLine("Enter  flightId ");
+            int flightID=int.Parse(Console.ReadLine());
+            Console.WriteLine("flightCode");
+            String flightCode=Console.ReadLine();
+            Console.WriteLine(" Enter aircraftId");
+            int aircraftID=int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter origin ");
+            string origin=Console.ReadLine();
+            Console.WriteLine("Enter the  destination ");
+            string destination=Console.ReadLine();
+            Console.WriteLine("Enter the  destination ");
+            Console.WriteLine(" Enter the departureDate ");
+            string departureDate=Console.ReadLine();
+
+            Console.WriteLine(" Enter   the departureTime ");
+            string departureTime=Console.ReadLine();
+
+            Console.WriteLine(" Enter  ticketPrice ");
+            decimal ticketPrice=decimal.Parse(Console.ReadLine());
+
+
+
+            //context.Flights.Add(new Flight
+            //{
+            //   flightId  = flightid, 
+            //    patientId = patientId,         
+            //    doctorId = doctorId,         
+            //    slotId = slotId,             
+            //    appointmentDate = selectedSlot.slotDate, 
+            //    appointmentTime = selectedSlot.slotTime,  
+            //    status = "Scheduled"             
+            //});
+
+
+
+
+
+
+
+
+        }
 
 
 
@@ -248,6 +346,7 @@ namespace FlightManagementSystem
                         break;
 
                     case 5:
+                        ScheduleFlight();
                         break;
 
                     case 6:
@@ -384,4 +483,5 @@ namespace FlightManagementSystem
 
                 }
     }
+}
 }
