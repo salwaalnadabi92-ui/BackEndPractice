@@ -167,6 +167,14 @@ namespace FlightManagementSystem
         // 4 View All Flights
         public static void ViewAllFlight()
         {
+
+            if(Flight.Count == 0)
+
+            {
+                Console.WriteLine(" No available flight");
+            }
+
+
             foreach( Flight  f in context.Flights )
 
             {
@@ -203,17 +211,25 @@ namespace FlightManagementSystem
 
             Console.WriteLine("____ScheduleFlight_______");
              var Aircrafts = context.Aircrafts.Where(f => f.isOperational).ToList();
-
             if(Aircrafts.Count == 0)
 
             {
                 Console.WriteLine("No aviaable flight ");
             }
 
-            Console.WriteLine(" enter aircraft id");
+            Console.WriteLine(" avialable flights");
+            foreach ( var aircraft in Aircrafts )
+
+            {
+                Console.WriteLine("ID :" +aircraft.aircraftId + "model:" + aircraft.model + "totalSeats: "+ aircraft.totalSeats);
+
+            }
+
+            Console.WriteLine("Enter aircraft id");
             int aircraftid=int.Parse(Console.ReadLine());
 
             var selectAircraft = context.Aircrafts.FirstOrDefault(a => a.aircraftId == aircraftid);
+
             if (selectAircraft != null)
             {
                 Console.WriteLine("invaild aircraft");
@@ -234,7 +250,6 @@ namespace FlightManagementSystem
             int poiltId=int.Parse(Console.ReadLine());
 
 
-
             var selectpoilt = context.Pilots.FirstOrDefault(p => p.pilotId == poiltId);
             if (selectpoilt != null)
             {
@@ -244,28 +259,115 @@ namespace FlightManagementSystem
 
             }
 
+            Console.WriteLine("Enter Origin:");
+
+            string origin = Console.ReadLine();
+
+            Console.WriteLine("Enter Destination:");
+
+            string destination = Console.ReadLine();
+
+            Console.WriteLine("Enter Departure Date (yyyy-MM-dd):");
+
+            DateTime departureDate = DateTime.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter Departure Time:");
+
+            string departureTime = Console.ReadLine();
+
+            Console.WriteLine("Enter Ticket Price:");
+
+            decimal ticketPrice = decimal.Parse(Console.ReadLine());
+
+            string flightCode = "FL" + (context.Flights.Count() + 1);
+
+
             Console.WriteLine("------------------------");
             Console.WriteLine("Flight Recored");
             Console.WriteLine("------------------------");
-            Console.WriteLine("Enter  flightId ");
-            int flightID=int.Parse(Console.ReadLine());
-            Console.WriteLine("flightCode");
-            String flightCode=Console.ReadLine();
-            Console.WriteLine(" Enter aircraftId");
-            int aircraftID=int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter origin ");
-            string origin=Console.ReadLine();
-            Console.WriteLine("Enter the  destination ");
-            string destination=Console.ReadLine();
-            Console.WriteLine("Enter the  destination ");
-            Console.WriteLine(" Enter the departureDate ");
-            string departureDate=Console.ReadLine();
 
-            Console.WriteLine(" Enter   the departureTime ");
-            string departureTime=Console.ReadLine();
+            Flight flight = new Flight
 
-            Console.WriteLine(" Enter  ticketPrice ");
-            decimal ticketPrice=decimal.Parse(Console.ReadLine());
+            {
+                flightCode = flightCode,
+
+                aircraftId = selectAircraft.aircraftId,
+
+                pilotId = selectpoilt.pilotId,
+
+                origin = origin,
+
+                destination = destination,
+
+                departureDate = departureDate,
+
+                departureTime = departureTime,
+
+                vailableSeats = selectAircraft.totalSeats,
+
+                ticketPrice = ticketPrice,
+
+                status = "Scheduled"
+
+            };
+
+            context.Flights.Add(flight);
+
+            
+
+            Console.WriteLine("Flight Scheduled Successfully");
+
+            Console.WriteLine("Flight Code: {flight.flightCode}");
+
+            Console.WriteLine("Available Seats: {flight.vailableSeats}");
+
+            Console.WriteLine("Status: {flight.status}");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //Console.WriteLine("Enter  flightId ");
+            //int flightID=int.Parse(Console.ReadLine());
+            //Console.WriteLine("flightCode");
+            //String flightCode=Console.ReadLine();
+            //Console.WriteLine(" Enter aircraftId");
+            //int aircraftID=int.Parse(Console.ReadLine());
+            //Console.WriteLine("Enter origin ");
+            //string origin=Console.ReadLine();
+            //Console.WriteLine("Enter the  destination ");
+            //string destination=Console.ReadLine();
+            //Console.WriteLine("Enter the  destination ");
+            //Console.WriteLine(" Enter the departureDate ");
+            //string departureDate=Console.ReadLine();
+
+            //Console.WriteLine(" Enter   the departureTime ");
+            //string departureTime=Console.ReadLine();
+
+            //Console.WriteLine(" Enter  ticketPrice ");
+            //decimal ticketPrice=decimal.Parse(Console.ReadLine());
 
 
 
