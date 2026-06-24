@@ -132,13 +132,21 @@ namespace FlightManagementSystem
 
             string license = Console.ReadLine();
 
-            int pilotId = context.Pilots.Count + 1;
+            int pilotID = context.Pilots.Count + 1;
+
+            bool checkpoilt= context.Pilots.Any(p=>p.pilotId== pilotID);
+
+            if (checkpoilt =true)
+            {
+                Console.WriteLine(" THIS ID USED ");
+            }
+
 
             Pilot pilot = new Pilot
 
             {
 
-                pilotId = pilotId,
+                pilotId = pilotID,
 
                 pilotName = name,
 
@@ -156,7 +164,7 @@ namespace FlightManagementSystem
 
             Console.WriteLine("Pilot Registered Successfully");
 
-            Console.WriteLine("Pilot ID:" +pilotId);
+            Console.WriteLine("Pilot ID:" +pilotID);
 
         }
 
@@ -165,14 +173,14 @@ namespace FlightManagementSystem
         public static void ViewAllFlight()
         {
 
-            if(Flight.Count == 0)
+            if (context.Flights.Count == 0)
 
             {
                 Console.WriteLine(" No available flight");
             }
 
 
-            foreach( Flight  f in context.Flights )
+            foreach (var f in context.Flights)
 
             {
                 Console.WriteLine("------------------------");
@@ -187,7 +195,7 @@ namespace FlightManagementSystem
 
                 Console.WriteLine($"Departure Time:" +f.departureTime);
 
-                //Console.WriteLine("Available Seats:" + f.availableseat);
+                Console.WriteLine("Available Seats:" + f.vailableSeats);
 
                 Console.WriteLine($"Ticket Price: " +f.ticketPrice);
 
@@ -266,7 +274,7 @@ namespace FlightManagementSystem
 
             Console.WriteLine("Enter Departure Date (yyyy-MM-dd):");
 
-            DateTime departureDate = DateTime.Parse(Console.ReadLine());
+            String departureDate =(Console.ReadLine());
 
             Console.WriteLine("Enter Departure Time:");
 
@@ -314,11 +322,11 @@ namespace FlightManagementSystem
 
             Console.WriteLine("Flight Scheduled Successfully");
 
-            Console.WriteLine("Flight Code: {flight.flightCode}");
+            Console.WriteLine("Flight Code:" +flight.flightCode);
 
-            Console.WriteLine("Available Seats: {flight.vailableSeats}");
+            Console.WriteLine("Available Seats:" +flight.vailableSeats);
 
-            Console.WriteLine("Status: {flight.status}");
+            Console.WriteLine("Status: "+flight.status);
 
 
         }
@@ -364,23 +372,22 @@ namespace FlightManagementSystem
 
 
             Console.WriteLine("ENTER FLIGHT ID");
-            int flightID=int.Parse(Console.ReadLine());
-            var selectedFlight = context.Flights .FirstOrDefault(f => f.flightId == flightID);
+            int flightID = int.Parse(Console.ReadLine());
+            var selectedFlight = context.Flights.FirstOrDefault(f => f.flightId == flightID);
 
             if (selectedFlight == null)
 
-            { 
+            {
                 Console.WriteLine("Invalid Flight.");
 
                 return;
 
             }
 
-            string seatLabel = "Seat-" +selectedFlight.vailableSeats;
+            string seatLabel = "Seat-" + selectedFlight.vailableSeats;
 
 
             int bookid = context.Bookings.Count + 1;
-
 
             Booking booking = new Booking
 
@@ -396,23 +403,65 @@ namespace FlightManagementSystem
 
                 totalPrice = selectedFlight.ticketPrice,
 
-                Status = "Confirmed"
+              bookingStatus = "Confirmed"
 
             };
+
+            //int flight = context.Flights.vailableSeats.count - 1;
 
             context.Bookings.Add(booking);
             Console.WriteLine("Booking Created Successfully");
 
-            Console.WriteLine("Seat Number: "+seatLabel);
+            Console.WriteLine("Seat Number: " + seatLabel);
 
-            Console.WriteLine("Total Price:" +booking.totalPrice);
+            Console.WriteLine("Total Price:" + booking.totalPrice);
 
-
-
-
+        }
 
 
 
+        // 7 cancel a booking
+        public static void CancelBooking()
+        {
+
+            Console.WriteLine("Enter booking id");
+            int bookId = int.Parse(Console.ReadLine());
+
+            var checkid = context.Bookings.FirstOrDefault(b => b.bookingId == bookId);
+
+            if (checkid == null)
+            {
+                Console.WriteLine(" booking id not found");
+            }
+
+            Console.WriteLine(" enter flight id");
+            int flightID = int.Parse(Console.ReadLine());
+
+            var checkFlight = context.Bookings.FirstOrDefault(fl => fl.flightId == flightID);
+
+            //    if(checkFlight != null)
+            //    {
+            //        checkFlight.av;
+            //    }
+
+            //    Booking.bookingStatus= " cancelled ";
+            //    Console.WriteLine(" booking cancel succussfuly");
+            //}
+
+        }
+
+        //8 Depart Flight
+
+        public static void DepartFlight()
+        {
+
+
+
+
+
+
+
+        }
 
 
 
@@ -434,19 +483,7 @@ namespace FlightManagementSystem
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-            static void Main(string[] args)
+        static void Main(string[] args)
         {
 
 
@@ -506,6 +543,7 @@ namespace FlightManagementSystem
                         break;
 
                     case 7:
+                        
                         break;
 
                     case 8:
@@ -637,5 +675,5 @@ namespace FlightManagementSystem
             }
         }
 }
-}
-}
+
+
