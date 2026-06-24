@@ -235,7 +235,7 @@ namespace FlightManagementSystem
 
             var selectAircraft = context.Aircrafts.FirstOrDefault(a => a.aircraftId == aircraftid);
 
-            if (selectAircraft != null)
+            if (selectAircraft == null)
             {
                 Console.WriteLine("invaild aircraft");
 
@@ -256,7 +256,7 @@ namespace FlightManagementSystem
 
 
             var selectpoilt = context.Pilots.FirstOrDefault(p => p.pilotId == poiltId);
-            if (selectpoilt != null)
+            if (selectpoilt == null)
             {
                 Console.WriteLine("invaild poilt");
 
@@ -352,12 +352,12 @@ namespace FlightManagementSystem
                        f.status == "Schedule" &&
                        f.vailableSeats != 0).ToList();
 
-            if (selectedflightS.Count == 0)
-            {
-                Console.WriteLine("No available flights.");
+            //if (selectedflightS.Count == 0)
+            //{
+            //    Console.WriteLine("No available flights.");
 
-                return;
-            }
+            //    return;
+            //}
 
             foreach (var f in selectedflightS)
             {
@@ -407,9 +407,11 @@ namespace FlightManagementSystem
 
             };
 
-            //int flight = context.Flights.vailableSeats.count - 1;
-
             context.Bookings.Add(booking);
+
+            selectedFlight.vailableSeats--;
+
+
             Console.WriteLine("Booking Created Successfully");
 
             Console.WriteLine("Seat Number: " + seatLabel);
@@ -420,7 +422,7 @@ namespace FlightManagementSystem
 
 
 
-        // 7 cancel a booking
+        // 7 cancel a bookin
         public static void CancelBooking()
         {
 
@@ -439,14 +441,14 @@ namespace FlightManagementSystem
 
             var checkFlight = context.Bookings.FirstOrDefault(fl => fl.flightId == flightID);
 
-            //    if(checkFlight != null)
-            //    {
-            //        checkFlight.av;
-            //    }
+            if (checkFlight != null)
+            {
 
-            //    Booking.bookingStatus= " cancelled ";
-            //    Console.WriteLine(" booking cancel succussfuly");
-            //}
+                checkid.bookingStatus = "cancelled";
+            }
+
+            Console.WriteLine(" booking cancel succussfuly");
+        
 
         }
 
@@ -454,6 +456,63 @@ namespace FlightManagementSystem
 
         public static void DepartFlight()
         {
+
+   
+            Console.WriteLine("Enter Flight ID:");
+
+            int flightId = int.Parse(Console.ReadLine());
+
+            var flight = context.Flights .FirstOrDefault(f => f.flightId == flightId);
+
+            if (flight == null)
+
+            {
+                Console.WriteLine("Flight not found!");
+
+                return;
+
+            }
+
+            if (flight.status == "Departed")
+
+            {
+
+                Console.WriteLine("Flight already departed");
+
+                return;
+
+            }
+
+            if (flight.status == "Cancelled")
+
+            {
+
+                Console.WriteLine("Cancelled flight cannot departed");
+
+                return;
+
+            }
+
+            flight.status = "Departed";
+
+            var pilot = context.Pilots .FirstOrDefault(p => p.pilotId == flight.pilotId);
+
+            if (pilot != null)
+
+            {
+                Console.WriteLine("Enter Flight Duration (hours):");
+
+                int duration = int.Parse(Console.ReadLine());
+
+                pilot.flightHours += duration;
+
+            }
+
+            Console.WriteLine("Flight departed successfully.");
+
+        }
+
+
 
 
 
@@ -543,10 +602,12 @@ namespace FlightManagementSystem
                         break;
 
                     case 7:
-                        
+                        CancelBooking();
                         break;
 
                     case 8:
+                        DepartFlight();
+
                         break;
 
                     case 9:
