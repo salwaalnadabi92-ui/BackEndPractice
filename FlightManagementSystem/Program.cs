@@ -26,6 +26,7 @@ namespace FlightManagementSystem
         {
 
             Console.WriteLine("Add New Passenger");
+            Console.WriteLine("______________________");
             Console.WriteLine("Enter Full Name");
             string name = Console.ReadLine();
             Console.Write("Enter Email: ");
@@ -73,10 +74,11 @@ namespace FlightManagementSystem
 
             context.Passengers.Add(passenger);
 
+
+            Console.WriteLine("____________________________________");
             Console.WriteLine("Passenger Registered Successfully");
-
             Console.WriteLine("Passenger ID:" +passengerId);
-
+            Console.WriteLine("____________________________________");
         }
 
         // 2 Add an Aircraft
@@ -109,10 +111,10 @@ namespace FlightManagementSystem
 
             context.Aircrafts.Add(aircraft);
 
+            Console.WriteLine("_____________________________");
             Console.WriteLine("Aircraft Added Successfully");
-
-            Console.WriteLine("Aircraft ID:" +aircraftId);
-
+            Console.WriteLine("Aircraft ID: " +aircraftId);
+            Console.WriteLine("_____________________________");
 
         }
 
@@ -135,14 +137,6 @@ namespace FlightManagementSystem
 
             int pilotID = context.Pilots.Count + 1;
 
-            bool checkpoilt= context.Pilots.Any(p=>p.pilotId== pilotID);
-
-            if (checkpoilt =true)
-            {
-                Console.WriteLine(" THIS ID USED ");
-            }
-
-
             Pilot pilot = new Pilot
 
             {
@@ -163,10 +157,10 @@ namespace FlightManagementSystem
 
             context.Pilots.Add(pilot);
 
+            Console.WriteLine("________________________________");
             Console.WriteLine("Pilot Registered Successfully");
-
             Console.WriteLine("Pilot ID:" +pilotID);
-
+            Console.WriteLine("________________________________");
         }
 
 
@@ -214,7 +208,7 @@ namespace FlightManagementSystem
 
 
         {
-
+            Console.WriteLine("__________________________");
             Console.WriteLine("____ScheduleFlight_______");
              var Aircrafts = context.Aircrafts.Where(f => f.isOperational).ToList();
             if(Aircrafts.Count == 0)
@@ -227,7 +221,7 @@ namespace FlightManagementSystem
             foreach ( var aircraft in Aircrafts )
 
             {
-                Console.WriteLine("ID :" +aircraft.aircraftId + "model:" + aircraft.model + "totalSeats: "+ aircraft.totalSeats);
+                Console.WriteLine("ID : "  +aircraft.aircraftId   + "model:"   + aircraft.model +   "totalSeats: "+ aircraft.totalSeats);
 
             }
 
@@ -253,7 +247,7 @@ namespace FlightManagementSystem
                 return;
             }
 
-            Console.WriteLine(" enter apoilt id");
+            Console.WriteLine(" Enter apoilt id");
             int poiltId=int.Parse(Console.ReadLine());
 
 
@@ -263,11 +257,9 @@ namespace FlightManagementSystem
                 Console.WriteLine("invaild poilt");
 
                 return;
-
             }
 
             Console.WriteLine("Enter Origin:");
-
             string origin = Console.ReadLine();
 
             Console.WriteLine("Enter Destination:");
@@ -320,16 +312,13 @@ namespace FlightManagementSystem
 
             context.Flights.Add(flight);
 
-            
 
+            Console.WriteLine("_________________________________________");
             Console.WriteLine("Flight Scheduled Successfully");
-
             Console.WriteLine("Flight Code:" +flight.flightCode);
-
             Console.WriteLine("Available Seats:" +flight.vailableSeats);
-
             Console.WriteLine("Status: "+flight.flightStatus);
-
+            Console.WriteLine("_________________________________________");
 
         }
 
@@ -414,13 +403,11 @@ namespace FlightManagementSystem
 
             selectedFlight.vailableSeats--;
 
-
+            Console.WriteLine("___________________________________");
             Console.WriteLine("Booking Created Successfully");
-
             Console.WriteLine("Seat Number: " + seatLabel);
-
             Console.WriteLine("Total Price:" + booking.totalPrice);
-
+            Console.WriteLine("______________________________________");
         }
 
 
@@ -450,8 +437,9 @@ namespace FlightManagementSystem
                 checkid.bookingStatus = "cancelled";
             }
 
+            Console.WriteLine("_____________________________");
             Console.WriteLine(" booking cancel succussfuly");
-        
+            Console.WriteLine("_____________________________");
 
         }
 
@@ -510,9 +498,9 @@ namespace FlightManagementSystem
                 pilot.flightHours += duration;
 
             }
-
+            Console.WriteLine("_____________________________-");
             Console.WriteLine("Flight departed successfully.");
-
+            Console.WriteLine("_____________________________-");
         }
 
         // 9 cencel flight 
@@ -545,9 +533,6 @@ namespace FlightManagementSystem
 
             }
 
-           
-
-
             var selectPoilt=context.Pilots.FirstOrDefault(p=>p.pilotId==selectflight.pilotId);
 
             if(selectPoilt !=null)
@@ -555,10 +540,10 @@ namespace FlightManagementSystem
                 selectPoilt.isAvailable = true;
 
             }
-
+            Console.WriteLine("________________________________");
             Console.WriteLine(" flight cencal succussfuly");
             Console.WriteLine("Booking affected:" + numberBooking);
-
+            Console.WriteLine("----------------------------------");
         }
 
         //10 passenger booking history
@@ -624,7 +609,17 @@ namespace FlightManagementSystem
 
         
 
+        //11 flight revenue & load favtor report
 
+
+        //public static void flightRevenue()
+        //{
+
+
+
+        //}
+
+        //    var flight = context.Bookings.Where(b => b.flightId==flightid);
 
 
 
@@ -653,9 +648,9 @@ namespace FlightManagementSystem
                     while (exit == false)
                     {
 
-                        Console.WriteLine(" =======================================");
+                        Console.WriteLine("========================================");
                         Console.WriteLine("FLIGHT MANAGEMENT SYSTEM ");
-                        Console.WriteLine(" =======================================");
+                        Console.WriteLine("========================================");
                         Console.WriteLine("1.Register a Passenger ");
                         Console.WriteLine("2.Add an Aircraft ");
                         Console.WriteLine("3.Register a Pilot");
@@ -723,6 +718,8 @@ namespace FlightManagementSystem
                                 break;
 
                             case 11:
+
+                        //flightRevenue();
                                 break;
 
                             case 0:
