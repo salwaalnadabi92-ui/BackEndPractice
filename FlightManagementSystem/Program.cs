@@ -578,8 +578,7 @@ namespace FlightManagementSystem
 
             foreach (var booking in findBooking)
             {
-                var flight = context.Flights
-                    .FirstOrDefault(f => f.flightId == booking.flightId);
+                var flight = context.Flights.FirstOrDefault(f => f.flightId == booking.flightId);
 
                 Console.WriteLine("--------------------------------");
                 Console.WriteLine("Flight Code: " +flight.flightCode);
@@ -589,21 +588,13 @@ namespace FlightManagementSystem
                 Console.WriteLine("Seat Number:"+booking.seatNumber);
                 Console.WriteLine("Price Paid: "+booking.totalPrice);
                 Console.WriteLine("Status: " +booking.bookingStatus);
-
+                Console.WriteLine("--------------------------------");
                 totalAmount += booking.totalPrice;
             }
 
             Console.WriteLine("--------------------------------");
             Console.WriteLine($"Total Amount Paid: {totalAmount}");
-
-
-
-
-
-
-
-
-
+            Console.WriteLine("--------------------------------");
 
         }
 
