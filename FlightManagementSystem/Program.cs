@@ -1,5 +1,6 @@
 ﻿using FlightManagementSystem.Models;
 using Microsoft.Win32;
+using System.ComponentModel.DataAnnotations;
 using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 
@@ -199,7 +200,7 @@ namespace FlightManagementSystem
 
                 Console.WriteLine($"Ticket Price: " +f.ticketPrice);
 
-                Console.WriteLine("Status: " + f.status);
+                Console.WriteLine("Status: " + f.flightStatus);
 
 
             }
@@ -312,7 +313,7 @@ namespace FlightManagementSystem
 
                 ticketPrice = ticketPrice,
 
-                status = "Scheduled"
+                flightStatus = "Scheduled"
 
             };
 
@@ -326,7 +327,7 @@ namespace FlightManagementSystem
 
             Console.WriteLine("Available Seats:" +flight.vailableSeats);
 
-            Console.WriteLine("Status: "+flight.status);
+            Console.WriteLine("Status: "+flight.flightStatus);
 
 
         }
@@ -349,7 +350,7 @@ namespace FlightManagementSystem
             string destination = Console.ReadLine();
 
             var selectedflightS = context.Flights.Where(f => f.destination == destination &&
-                       f.status == "Schedule" &&
+                       f.flightStatus == "Schedule" &&
                        f.vailableSeats != 0).ToList();
 
             //if (selectedflightS.Count == 0)
@@ -473,7 +474,7 @@ namespace FlightManagementSystem
 
             }
 
-            if (flight.status == "Departed")
+            if (flight.flightStatus == "Departed")
 
             {
 
@@ -483,7 +484,7 @@ namespace FlightManagementSystem
 
             }
 
-            if (flight.status == "Cancelled")
+            if (flight.flightStatus == "Cancelled")
 
             {
 
@@ -493,7 +494,7 @@ namespace FlightManagementSystem
 
             }
 
-            flight.status = "Departed";
+            flight.flightStatus = "Departed";
 
             var pilot = context.Pilots .FirstOrDefault(p => p.pilotId == flight.pilotId);
 
@@ -514,13 +515,56 @@ namespace FlightManagementSystem
 
 
 
+        // 9 cencel flight 
+
+        public static void CencelFlight()
+        {
+            Console.WriteLine(" Eenter flight id");
+            int flightId=int.Parse(Console.ReadLine());
+
+            var selectflight=context.Flights .FirstOrDefault(f=>f.flightId == flightId);
+
+            if(selectflight == null) 
+            
+            { 
+            Console.WriteLine(" flight id can not found");
+            }
+
+              selectflight.flightStatus = "Cancelled";
 
 
+            var selectBooking=context.Bookings.Where(b=>b.flightId == flightId).ToList();
+            int  numberBooking=selectBooking.Count;
+
+            foreach (var booking in selectBooking)
+
+            {
+              booking.bookingStatus = "Cancelled";
 
 
+            }
 
+           
+
+
+            var selectPoilt=context.Pilots.FirstOrDefault(p=>p.pilotId==selectflight.pilotId);
+
+            if(selectPoilt !=null)
+            {
+                selectPoilt.isAvailable = true;
+
+            }
+
+            Console.WriteLine(" flight cencal succussfuly");
+            Console.WriteLine("Booking affected:" + numberBooking);
 
         }
+
+
+
+
+
+        
 
 
 
@@ -543,102 +587,98 @@ namespace FlightManagementSystem
 
 
         static void Main(string[] args)
-        {
-
-
-            bool exit = false;
-
-            while (exit == false)
-            {
-
-                Console.WriteLine(" =======================================");
-                Console.WriteLine("FLIGHT MANAGEMENT SYSTEM ");
-                Console.WriteLine(" =======================================");
-                Console.WriteLine("1.Register a Passenger ");
-                Console.WriteLine("2.Add an Aircraft ");
-                Console.WriteLine("3.Register a Pilot");
-                Console.WriteLine("4.View All Flights ");
-                Console.WriteLine("5.Schedule a Flight ");
-                Console.WriteLine("6.Book a Flight");
-                Console.WriteLine("7.Cancel a Booking ");
-                Console.WriteLine("8.Depart a Flight");
-                Console.WriteLine("9.Cancel a Flight");
-                Console.WriteLine("10.Passenger Booking History");
-                Console.WriteLine("11.Flight Revenue & Load Factor Report");
-                Console.WriteLine("0.Exit");
-                Console.WriteLine("========================================");
-                Console.WriteLine("  Enter your choose");
-                int choice = int.Parse(Console.ReadLine());
-
-                switch (choice)
                 {
 
-                    case 1:
 
-                        RegisterPassenger();
-                        break;
+                    bool exit = false;
 
-                    case 2:
-                        AddAircraft();
-                        break;
+                    while (exit == false)
+                    {
 
-                    case 3:
-                         RegisterPilot();
-                        break;
+                        Console.WriteLine(" =======================================");
+                        Console.WriteLine("FLIGHT MANAGEMENT SYSTEM ");
+                        Console.WriteLine(" =======================================");
+                        Console.WriteLine("1.Register a Passenger ");
+                        Console.WriteLine("2.Add an Aircraft ");
+                        Console.WriteLine("3.Register a Pilot");
+                        Console.WriteLine("4.View All Flights ");
+                        Console.WriteLine("5.Schedule a Flight ");
+                        Console.WriteLine("6.Book a Flight");
+                        Console.WriteLine("7.Cancel a Booking ");
+                        Console.WriteLine("8.Depart a Flight");
+                        Console.WriteLine("9.Cancel a Flight");
+                        Console.WriteLine("10.Passenger Booking History");
+                        Console.WriteLine("11.Flight Revenue & Load Factor Report");
+                        Console.WriteLine("0.Exit");
+                        Console.WriteLine("========================================");
+                        Console.WriteLine("  Enter your choose");
+                        int choice = int.Parse(Console.ReadLine());
 
+                        switch (choice)
+                        {
 
-                    case 4:
-                        ViewAllFlight();
+                            case 1:
 
-                        break;
+                                RegisterPassenger();
+                                break;
 
-                    case 5:
-                        ScheduleFlight();
-                        break;
+                            case 2:
+                                AddAircraft();
+                                break;
 
-                    case 6:
-                        BookFlight();
+                            case 3:
+                                RegisterPilot();
+                                break;
 
-                        break;
 
-                    case 7:
-                        CancelBooking();
-                        break;
+                            case 4:
+                                ViewAllFlight();
 
-                    case 8:
-                        DepartFlight();
+                                break;
 
-                        break;
+                            case 5:
+                                ScheduleFlight();
+                                break;
 
-                    case 9:
-                        break;
+                            case 6:
+                                BookFlight();
 
-                    case 10:
-                        break;
+                                break;
 
-                    case 11:
-                        break;
+                            case 7:
+                                CancelBooking();
+                                break;
 
-                    case 0:
+                            case 8:
+                                DepartFlight();
 
-                        exit=true;
-                        break;
+                                break;
 
+                            case 9:
+                                CencelFlight();
 
+                                break;
 
-                }//switch
+                            case 10:
+                                break;
 
-                Console.WriteLine(" Enter any key");
-                Console.ReadKey();
-                Console.Clear();
+                            case 11:
+                                break;
 
-            }//while
+                            case 0:
 
+                                exit = true;
+                                break;
 
 
 
+                        }//switch
 
+                        Console.WriteLine(" Enter any key");
+                        Console.ReadKey();
+                        Console.Clear();
 
+                    }//while
 
 
 
@@ -733,8 +773,15 @@ namespace FlightManagementSystem
 
 
 
-            }
+
+
+
+
+
+                
+            
         }
+}
 }
 
 
