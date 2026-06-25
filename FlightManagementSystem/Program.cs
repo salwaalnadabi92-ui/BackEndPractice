@@ -352,15 +352,17 @@ namespace FlightManagementSystem
             string destination = Console.ReadLine();
 
             var selectedflightS = context.Flights.Where(f => f.destination == destination &&
-                       f.flightStatus == "Schedule" &&
+                       f.flightStatus == "Scheduled" &&
                        f.vailableSeats != 0).ToList();
 
-            //if (selectedflightS.Count == 0)
-            //{
-            //    Console.WriteLine("No available flights.");
+            if (selectedflightS.Count == 0)
+            {
+                Console.WriteLine("No available flights.");
 
-            //    return;
-            //}
+                return;
+            }
+
+            
 
             foreach (var f in selectedflightS)
             {
@@ -371,8 +373,6 @@ namespace FlightManagementSystem
                     " departureDate " + f.departureDate +
                     "  ticketPric" + f.ticketPrice);
             }
-
-
 
             Console.WriteLine("ENTER FLIGHT ID");
             int  flightID = int.Parse(Console.ReadLine());
@@ -515,8 +515,6 @@ namespace FlightManagementSystem
 
         }
 
-
-
         // 9 cencel flight 
 
         public static void CencelFlight()
@@ -536,6 +534,7 @@ namespace FlightManagementSystem
 
 
             var selectBooking=context.Bookings.Where(b=>b.flightId == flightId).ToList();
+
             int  numberBooking=selectBooking.Count;
 
             foreach (var booking in selectBooking)
