@@ -590,6 +590,27 @@ namespace FlightManagementSystem
             }
 
 
+            decimal totalAmount = 0;
+
+            foreach (var booking in findBooking)
+            {
+                var flight = context.Flights
+                    .FirstOrDefault(f => f.flightId == booking.flightId);
+
+                Console.WriteLine("--------------------------------");
+                Console.WriteLine("Flight Code: " +flight.flightCode);
+                Console.WriteLine("Origin:"+flight.origin);
+                Console.WriteLine("Destination:" +flight.destination);
+                Console.WriteLine("Departure Date:"+flight.departureDate);
+                Console.WriteLine("Seat Number:"+booking.seatNumber);
+                Console.WriteLine("Price Paid: "+booking.totalPrice);
+                Console.WriteLine("Status: " +booking.bookingStatus);
+
+                totalAmount += booking.totalPrice;
+            }
+
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine($"Total Amount Paid: {totalAmount}");
 
 
 
