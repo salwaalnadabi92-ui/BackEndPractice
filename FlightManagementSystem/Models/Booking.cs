@@ -13,10 +13,10 @@ namespace FlightManagementSystem.Models
         public string seatNumber { get; set; }
         public string bookingDate { get; set; }
         public decimal totalPrice { get; set; }
-        public string status { get; set; }
+        public string  bookingStatus { get; set; }
         
 
-
+                                                                                                                                                                                                                              
 
 
 

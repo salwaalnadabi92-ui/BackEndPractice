@@ -250,6 +250,7 @@ namespace FlightManagementSystem
 
             {
                 Console.WriteLine("No poilt avaiable ");
+                return;
             }
 
             Console.WriteLine(" enter apoilt id");
@@ -344,6 +345,7 @@ namespace FlightManagementSystem
             if (selectpassenger == null)
             {
                 Console.WriteLine(" passenger not found");
+                return;
             }
 
             Console.WriteLine(" Enter destination");
@@ -373,7 +375,7 @@ namespace FlightManagementSystem
 
 
             Console.WriteLine("ENTER FLIGHT ID");
-            int flightID = int.Parse(Console.ReadLine());
+            int  flightID = int.Parse(Console.ReadLine());
             var selectedFlight = context.Flights.FirstOrDefault(f => f.flightId == flightID);
 
             if (selectedFlight == null)
@@ -560,9 +562,45 @@ namespace FlightManagementSystem
 
         }
 
+        //10 passenger booking history
+
+        public static void PassengerBookingHistory()
+        {
+            Console.WriteLine("Enter passenger id ");
+            int passId=int.Parse(Console.ReadLine());
+
+            var searchPassenger=context.Passengers.FirstOrDefault(p=>p.passengerId == passId);
+        
+
+            if(searchPassenger == null)
+            {
+                Console.WriteLine("passenger not found");
+
+            }
+
+            var findBooking = context.Bookings.Where(b => b.passengerId==passId  && 
+            b.bookingStatus=="confirmed").ToList();
+
+
+           if( findBooking.Count==0)
+
+            {
+                Console.WriteLine("no confirm booking found ");
+                return;
+            }
 
 
 
+
+
+
+
+
+
+
+
+
+        }
 
         
 
@@ -660,6 +698,8 @@ namespace FlightManagementSystem
                                 break;
 
                             case 10:
+
+                        PassengerBookingHistory();
                                 break;
 
                             case 11:
@@ -780,7 +820,8 @@ namespace FlightManagementSystem
 
                 
             
-        }
+        
+}
 }
 }
 
