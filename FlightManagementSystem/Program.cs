@@ -528,22 +528,22 @@ namespace FlightManagementSystem
         {
 
    
-            Console.WriteLine("Enter Flight ID:");
+            Console.WriteLine("Enter Flight ID:");//ask user to enter number of flight
 
             int flightId = int.Parse(Console.ReadLine());
 
-            var flight = context.Flights .FirstOrDefault(f => f.flightId == flightId);
+            var flight = context.Flights .FirstOrDefault(f => f.flightId == flightId);//find the flight 
 
             if (flight == null)
 
             {
-                Console.WriteLine("Flight not found!");
+                Console.WriteLine("Flight not found!");//ensure the flight is found
 
                 return;
 
             }
 
-            if (flight.flightStatus == "Departed")
+            if (flight.flightStatus == "Departed")//ensure the flight is not departed
 
             {
 
@@ -553,7 +553,7 @@ namespace FlightManagementSystem
 
             }
 
-            if (flight.flightStatus == "Cancelled")
+            if (flight.flightStatus == "Cancelled")//ensure the flight is not cancelled
 
             {
 
@@ -563,9 +563,9 @@ namespace FlightManagementSystem
 
             }
 
-            flight.flightStatus = "Departed";
+            flight.flightStatus = "Departed";//change the flight to departed
 
-            var pilot = context.Pilots .FirstOrDefault(p => p.pilotId == flight.pilotId);
+            var pilot = context.Pilots .FirstOrDefault(p => p.pilotId == flight.pilotId);//find the pilot which related to the flight
 
             if (pilot != null)
 
