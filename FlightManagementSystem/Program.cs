@@ -495,22 +495,22 @@ namespace FlightManagementSystem
         public static void CancelBooking()
         {
 
-            Console.WriteLine("Enter booking id");
+            Console.WriteLine("Enter booking id");//request the booking id
             int bookId = int.Parse(Console.ReadLine());
 
-            var checkid = context.Bookings.FirstOrDefault(b => b.bookingId == bookId);
+            var checkid = context.Bookings.FirstOrDefault(b => b.bookingId == bookId);//find the booking 
 
             if (checkid == null)
             {
                 Console.WriteLine(" booking id not found");
             }
 
-            Console.WriteLine(" enter flight id");
+            Console.WriteLine(" Enter flight id");
             int flightID = int.Parse(Console.ReadLine());
 
-            var checkFlight = context.Bookings.FirstOrDefault(fl => fl.flightId == flightID);
+            var checkFlight = context.Bookings.FirstOrDefault(fl => fl.flightId == flightID);//find the flight which related with same booking
 
-            if (checkFlight != null)
+            if (checkFlight != null)//change stauts to cancelled
             {
 
                 checkid.bookingStatus = "cancelled";
