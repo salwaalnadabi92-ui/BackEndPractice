@@ -252,14 +252,14 @@ namespace FlightManagementSystem
             Console.WriteLine("__________________________");
             Console.WriteLine("____ScheduleFlight_______");
 
-             var Aircrafts = context.Aircrafts.Where(f => f.isOperational).ToList();
-            if(Aircrafts.Count == 0)
+             var Aircrafts = context.Aircrafts.Where(f => f.isOperational).ToList();//find flight which is operational
 
+            if(Aircrafts.Count == 0)
             {
-                Console.WriteLine("No aviaable flight ");
+                Console.WriteLine("No aviaable aircraft");
             }
 
-            Console.WriteLine(" avialable flights");
+            Console.WriteLine(" avialable aircraft");//display aircrafts 
             foreach ( var aircraft in Aircrafts )
 
             {
@@ -267,10 +267,10 @@ namespace FlightManagementSystem
 
             }
 
-            Console.WriteLine("Enter aircraft id");
+            Console.WriteLine("Enter aircraft id");//ask user to enter id
             int aircraftid=int.Parse(Console.ReadLine());
 
-            var selectAircraft = context.Aircrafts.FirstOrDefault(a => a.aircraftId == aircraftid);
+            var selectAircraft = context.Aircrafts.FirstOrDefault(a => a.aircraftId == aircraftid);//find the id 
 
             if (selectAircraft == null)
             {
@@ -280,7 +280,7 @@ namespace FlightManagementSystem
 
                  }
 
-            var poilt= context.Pilots.Where(p => p.isAvailable).ToList();
+            var poilt= context.Pilots.Where(p => p.isAvailable).ToList();//find the pilot
 
             if (poilt.Count == 0)
 
@@ -289,9 +289,9 @@ namespace FlightManagementSystem
                 return;
             }
 
-            Console.WriteLine(" Enter apoilt id");
+            Console.WriteLine(" Enter apoilt id");//ask user to choose  pilot from the list
             int poiltId=int.Parse(Console.ReadLine());
-            while (!context.Pilots.Any(p => p.pilotId == poiltId && p.isAvailable))
+            while (!context.Pilots.Any(p => p.pilotId == poiltId && p.isAvailable))//vaildate
 
             {
 
@@ -301,7 +301,7 @@ namespace FlightManagementSystem
 
             }
 
-            var selectpoilt = context.Pilots.FirstOrDefault(p => p.pilotId == poiltId);
+            var selectpoilt = context.Pilots.FirstOrDefault(p => p.pilotId == poiltId);//find the choose pilot
             if (selectpoilt == null)
             {
                 Console.WriteLine("invaild poilt");
@@ -309,13 +309,14 @@ namespace FlightManagementSystem
                 return;
             }
 
-            Console.WriteLine("Enter Origin:");
+            Console.WriteLine("Enter Origin:");//ask user to enter origin
             string origin = Console.ReadLine();
 
-            Console.WriteLine("Enter Destination:");
+            Console.WriteLine("Enter Destination:");//ask user to enter the destation
 
             string destination = Console.ReadLine();
-            while (origin == destination)
+
+            while (origin == destination)//vailate 
 
             {
                 Console.WriteLine("Origin and destination cannot be the same.");
@@ -325,26 +326,26 @@ namespace FlightManagementSystem
                 destination = Console.ReadLine();
             }
 
-            Console.WriteLine("Enter Departure Date (yyyy-MM-dd):");
+            Console.WriteLine("Enter Departure Date (yyyy-MM-dd):");//aske user to enter date
 
             String departureDate =(Console.ReadLine());
 
-            Console.WriteLine("Enter Departure Time:");
+            Console.WriteLine("Enter Departure Time:");//ask user to input time
 
             string departureTime = Console.ReadLine();
 
-            Console.WriteLine("Enter Ticket Price:");
+            Console.WriteLine("Enter Ticket Price:");//ask user to input price
 
             decimal ticketPrice = decimal.Parse(Console.ReadLine());
 
-            string flightCode = "OA-" + (context.Flights.Count() + 1);
+            string flightCode = "OA-" + (context.Flights.Count() + 1);//auto genrated flight code
 
 
             Console.WriteLine("------------------------");
             Console.WriteLine("Flight Recored");
             Console.WriteLine("------------------------");
 
-            Flight flight = new Flight
+            Flight flight = new Flight//add flight
 
             {
                 flightCode = flightCode,
