@@ -140,13 +140,32 @@ namespace FlightManagementSystem
 
             string name = Console.ReadLine();
 
-            Console.Write("Enter Pilot Phone: ");
+            while (name == "")
+
+            {
+                Console.Write("Invalid name. Enter again: ");
+
+                name = Console.ReadLine();
+            }
+
+                Console.Write("Enter Pilot Phone: ");
 
             string phone = Console.ReadLine();
 
             Console.Write("Enter License Number: ");
 
             string license = Console.ReadLine();
+
+
+            while (context.Pilots.Any(p => p.licenseNumber == license))
+
+            {
+
+                Console.Write("License already exists. Enter another one: ");
+
+                license = Console.ReadLine();
+
+            }
 
             int pilotID = context.Pilots.Count + 1;
 
