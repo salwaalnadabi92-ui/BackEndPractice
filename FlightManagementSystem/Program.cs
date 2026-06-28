@@ -29,6 +29,17 @@ namespace FlightManagementSystem
             Console.WriteLine("______________________");
             Console.WriteLine("Enter Full Name");
             string name = Console.ReadLine();
+            while (name=="")
+
+            {
+                Console.Write("Invalid name. Enter again: ");
+
+                name = Console.ReadLine();
+
+            }
+
+
+
             Console.Write("Enter Email: ");
 
             string email = Console.ReadLine();
@@ -39,14 +50,16 @@ namespace FlightManagementSystem
 
             Console.Write("Enter Passport Number: ");
             string passport = Console.ReadLine();
+            while (context.Passengers.Any(p => p.passportNumber == passport))
 
-            bool result = context.Passengers.Any(p => p.passportNumber == passport);
-                          if (result == true)
             {
-                Console.WriteLine("passport already exites ");
-                return;
-            }
 
+                Console.Write("Passport already exists. Enter another one: ");
+
+                passport = Console.ReadLine();
+
+
+            }
 
             Console.Write("Enter Nationality: ");
 
