@@ -586,7 +586,7 @@ namespace FlightManagementSystem
 
         public static void CencelFlight()
         {
-            Console.WriteLine(" Eenter flight id");
+            Console.WriteLine(" Eenter flight id");//find flight want to cencel
             int flightId=int.Parse(Console.ReadLine());
 
             var selectflight=context.Flights .FirstOrDefault(f=>f.flightId == flightId);
@@ -597,14 +597,14 @@ namespace FlightManagementSystem
             Console.WriteLine(" flight not found");
             }
 
-              selectflight.flightStatus = "Cancelled";
+              selectflight.flightStatus = "Cancelled";//change status to cancelled
 
 
-            var selectBooking=context.Bookings.Where(b=>b.flightId == flightId).ToList();
+            var selectBooking=context.Bookings.Where(b=>b.flightId == flightId).ToList();//find all booking that related to the flight
 
-            int  numberBooking=selectBooking.Count;
+            int  numberBooking=selectBooking.Count;//count them
 
-            foreach (var booking in selectBooking)
+            foreach (var booking in selectBooking)//show and make all cencell
 
             {
               booking.bookingStatus = "Cancelled";
@@ -612,7 +612,7 @@ namespace FlightManagementSystem
 
             }
 
-            var selectPoilt=context.Pilots.FirstOrDefault(p=>p.pilotId==selectflight.pilotId);
+            var selectPoilt=context.Pilots.FirstOrDefault(p=>p.pilotId==selectflight.pilotId);//make pilot avialabale 
 
             if(selectPoilt !=null)
             {
@@ -621,7 +621,7 @@ namespace FlightManagementSystem
             }
             Console.WriteLine("________________________________");
             Console.WriteLine(" flight cencal succussfuly");
-            Console.WriteLine("Booking affected:" + numberBooking);
+            Console.WriteLine("Booking affected:" + numberBooking);//show all booking affected
             Console.WriteLine("----------------------------------");
         }
 
@@ -632,7 +632,7 @@ namespace FlightManagementSystem
             Console.WriteLine("Enter passenger id ");
             int passId=int.Parse(Console.ReadLine());
 
-            var searchPassenger=context.Passengers.FirstOrDefault(p=>p.passengerId == passId);
+            var searchPassenger=context.Passengers.FirstOrDefault(p=>p.passengerId == passId);//find the passenger
         
 
             if(searchPassenger == null)
@@ -641,7 +641,7 @@ namespace FlightManagementSystem
 
             }
 
-            var findBooking = context.Bookings.Where(b => b.passengerId==passId  && 
+            var findBooking = context.Bookings.Where(b => b.passengerId==passId  && //find all booking which stauta is confirmed for the passenger
             b.bookingStatus=="confirmed").ToList();
 
 
@@ -668,7 +668,8 @@ namespace FlightManagementSystem
                 Console.WriteLine("Price Paid: "+booking.totalPrice);
                 Console.WriteLine("Status: " +booking.bookingStatus);
                 Console.WriteLine("--------------------------------");
-                totalAmount += booking.totalPrice;
+
+                totalAmount += booking.totalPrice;//calculate  total price 
             }
 
             Console.WriteLine("--------------------------------");
