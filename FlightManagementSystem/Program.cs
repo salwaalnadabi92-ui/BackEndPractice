@@ -101,10 +101,21 @@ namespace FlightManagementSystem
             Console.Write("Enter Aircraft Model ( Boeing 737, Airbus A320)   : ");
 
             string model = Console.ReadLine();
+            while (string.IsNullOrWhiteSpace(model))
+
+                    {
+
+                 Console.Write("Invalid model. Enter again: ");
+
+                    model = Console.ReadLine();
+
+                            }
 
             Console.Write("Enter Total Seats: ");
 
             int totalSeats = Convert.ToInt32(Console.ReadLine());
+
+
 
             int aircraftId = context.Aircrafts.Count + 1;
 
