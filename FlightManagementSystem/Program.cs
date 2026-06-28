@@ -115,8 +115,6 @@ namespace FlightManagementSystem
 
             int totalSeats = Convert.ToInt32(Console.ReadLine());
 
-
-
             int aircraftId = context.Aircrafts.Count + 1;
 
 
@@ -253,6 +251,7 @@ namespace FlightManagementSystem
         {
             Console.WriteLine("__________________________");
             Console.WriteLine("____ScheduleFlight_______");
+
              var Aircrafts = context.Aircrafts.Where(f => f.isOperational).ToList();
             if(Aircrafts.Count == 0)
 
@@ -270,6 +269,11 @@ namespace FlightManagementSystem
 
             Console.WriteLine("Enter aircraft id");
             int aircraftid=int.Parse(Console.ReadLine());
+
+
+
+
+
 
             var selectAircraft = context.Aircrafts.FirstOrDefault(a => a.aircraftId == aircraftid);
 
@@ -292,7 +296,15 @@ namespace FlightManagementSystem
 
             Console.WriteLine(" Enter apoilt id");
             int poiltId=int.Parse(Console.ReadLine());
+            while (!context.Pilots.Any(p => p.pilotId == poiltId && p.isAvailable))
 
+            {
+
+                Console.Write("Pilot unavailable. Enter again: ");
+
+                poiltId = int.Parse(Console.ReadLine());
+
+            }
 
             var selectpoilt = context.Pilots.FirstOrDefault(p => p.pilotId == poiltId);
             if (selectpoilt == null)
@@ -308,6 +320,15 @@ namespace FlightManagementSystem
             Console.WriteLine("Enter Destination:");
 
             string destination = Console.ReadLine();
+            while (origin == destination)
+
+            {
+                Console.WriteLine("Origin and destination cannot be the same.");
+
+                Console.Write("Destination: ");
+
+                destination = Console.ReadLine();
+            }
 
             Console.WriteLine("Enter Departure Date (yyyy-MM-dd):");
 
