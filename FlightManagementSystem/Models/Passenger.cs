@@ -7,12 +7,12 @@ namespace FlightManagementSystem.Models
     public class Passenger
     {
 
-        public int passengerId { get; set; }  // Unique identifier for every passenger in the system
-        public string passengerName { get; set; }// Full name of the passenge
-        public string passengerEmail { get; set; }//Email address used for booking confirmation
-        public string passengerPhone { get; set; }// Contact phone number
-        public string passportNumber { get; set; }// Passport / national ID number — must be unique per passenger
-        public string nationality { get; set; }//Country of the passenger's passport
+        public int passengerId { get; set; }  // system gentrated
+        public string passengerName { get; set; }// user input
+        public string passengerEmail { get; set; }//user input
+        public string passengerPhone { get; set; }// user input
+        public string passportNumber { get; set; }// user input
+        public string nationality { get; set; }//user input 
 
 
 

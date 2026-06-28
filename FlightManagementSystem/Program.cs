@@ -1,6 +1,7 @@
 ﻿using FlightManagementSystem.Models;
 using Microsoft.Win32;
 using System.ComponentModel.DataAnnotations;
+using System.Net.WebSockets;
 using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 
@@ -290,6 +291,8 @@ namespace FlightManagementSystem
                 return;
             }
 
+            //forece miss
+
             Console.WriteLine(" Enter apoilt id");//ask user to choose  pilot from the list
             int poiltId=int.Parse(Console.ReadLine());
             while (!context.Pilots.Any(p => p.pilotId == poiltId && p.isAvailable))//vaildate
@@ -340,7 +343,7 @@ namespace FlightManagementSystem
             decimal ticketPrice = decimal.Parse(Console.ReadLine());
 
             string flightCode = "OA-" + (context.Flights.Count() + 1);//auto genrated flight code
-
+             //miss id
 
             Console.WriteLine("------------------------");
             Console.WriteLine("Flight Recored");
@@ -517,6 +520,8 @@ namespace FlightManagementSystem
             {
 
                 checkid.bookingStatus = "cancelled";
+
+                //--
             }
 
             Console.WriteLine("_____________________________");
@@ -567,6 +572,7 @@ namespace FlightManagementSystem
             }
 
             flight.flightStatus = "Departed";//change the flight to departed
+            //poilt.avilv//miss
 
             var pilot = context.Pilots .FirstOrDefault(p => p.pilotId == flight.pilotId);//find the pilot which related to the flight
 
