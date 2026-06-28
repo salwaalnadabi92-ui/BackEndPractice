@@ -385,10 +385,10 @@ namespace FlightManagementSystem
 
         public static void BookFlight()
         {
-            Console.WriteLine(" Enetr passenger id");
+            Console.WriteLine(" Enetr passenger id");//ask user enter id
             int id = int.Parse(Console.ReadLine());
 
-            while (!context.Passengers.Any(p => p.passengerId == id))
+            while (!context.Passengers.Any(p => p.passengerId == id))//vaildate 
 
             {
 
@@ -398,7 +398,7 @@ namespace FlightManagementSystem
 
             }
 
-            var selectpassenger = context.Passengers.FirstOrDefault(p => p.passengerId == id);
+            var selectpassenger = context.Passengers.FirstOrDefault(p => p.passengerId == id);//find the user from the table(passenger)
 
             if (selectpassenger == null)
             {
@@ -406,10 +406,10 @@ namespace FlightManagementSystem
                 return;
             }
 
-            Console.WriteLine(" Enter destination");
+            Console.WriteLine(" Enter destination");//assinge the destation
             string destination = Console.ReadLine();
 
-            var selectedflightS = context.Flights.Where(f => f.destination == destination &&
+            var selectedflightS = context.Flights.Where(f => f.destination == destination &&//show just  appropriate flight same destation & status=Scheduled & exit seat
                        f.flightStatus == "Scheduled" &&
                        f.vailableSeats != 0).ToList();
 
@@ -422,7 +422,7 @@ namespace FlightManagementSystem
 
             
 
-            foreach (var f in selectedflightS)
+            foreach (var f in selectedflightS)//display flight
             {
                 Console.WriteLine("id:" + f.flightId +
                     " destination:" + f.destination +
@@ -432,7 +432,7 @@ namespace FlightManagementSystem
                     "  ticketPric" + f.ticketPrice);
             }
 
-            Console.WriteLine("ENTER FLIGHT ID");
+            Console.WriteLine("ENTER FLIGHT ID");//ask user to enter the flight
             int  flightID = int.Parse(Console.ReadLine());
             while (!context.Flights.Any(f => f.flightId == flightID))
 
@@ -444,7 +444,7 @@ namespace FlightManagementSystem
 
             }
 
-            var selectedFlight = context.Flights.FirstOrDefault(f => f.flightId == flightID);
+            var selectedFlight = context.Flights.FirstOrDefault(f => f.flightId == flightID);//find the flight
 
             if (selectedFlight == null)
 
@@ -454,13 +454,14 @@ namespace FlightManagementSystem
                 return;
 
             }
+            Console.WriteLine("Enter seat number");//ask user to enter seat number
+            string seatLabel=Console.ReadLine();
 
-            string seatLabel = "Seat-" + selectedFlight.vailableSeats;////////
+
+            int bookid = context.Bookings.Count + 1;//assinge booking id
 
 
-            int bookid = context.Bookings.Count + 1;
-
-            Booking booking = new Booking
+            Booking booking = new Booking//add booking 
 
             {
 
@@ -480,7 +481,7 @@ namespace FlightManagementSystem
 
             context.Bookings.Add(booking);
 
-            selectedFlight.vailableSeats--;
+            selectedFlight.vailableSeats--;//decrement the seat number
 
             Console.WriteLine("___________________________________");
             Console.WriteLine("Booking Created Successfully");
@@ -491,7 +492,7 @@ namespace FlightManagementSystem
 
 
 
-        // 7 cancel a bookin
+        // 7 cancel a booking
         public static void CancelBooking()
         {
 
