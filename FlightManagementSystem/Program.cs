@@ -145,11 +145,11 @@ namespace FlightManagementSystem
         public static void RegisterPilot()
         {
 
-            Console.Write("Enter Pilot Name: ");
+            Console.Write("Enter Pilot Name: ");//aske user to enter name
 
             string name = Console.ReadLine();
 
-            while (name == "")
+            while (name == "")//vailate name
 
             {
                 Console.Write("Invalid name. Enter again: ");
@@ -157,16 +157,16 @@ namespace FlightManagementSystem
                 name = Console.ReadLine();
             }
 
-                Console.Write("Enter Pilot Phone: ");
+                Console.Write("Enter Pilot Phone: ");//ask user to enter phoe
 
             string phone = Console.ReadLine();
 
-            Console.Write("Enter License Number: ");
+            Console.Write("Enter License Number: ");//ask user to enter licence
 
             string license = Console.ReadLine();
 
 
-            while (context.Pilots.Any(p => p.licenseNumber == license))
+            while (context.Pilots.Any(p => p.licenseNumber == license))//vailate licence number
 
             {
 
@@ -176,9 +176,10 @@ namespace FlightManagementSystem
 
             }
 
-            int pilotID = context.Pilots.Count + 1;
+            int pilotID = context.Pilots.Count + 1;//auto genrated pilot id
 
-            Pilot pilot = new Pilot
+
+            Pilot pilot = new Pilot//add pilot
 
             {
 
