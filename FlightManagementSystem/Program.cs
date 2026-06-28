@@ -594,7 +594,7 @@ namespace FlightManagementSystem
             if(selectflight == null) 
             
             { 
-            Console.WriteLine(" flight id can not found");
+            Console.WriteLine(" flight not found");
             }
 
               selectflight.flightStatus = "Cancelled";
