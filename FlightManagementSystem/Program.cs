@@ -270,11 +270,6 @@ namespace FlightManagementSystem
             Console.WriteLine("Enter aircraft id");
             int aircraftid=int.Parse(Console.ReadLine());
 
-
-
-
-
-
             var selectAircraft = context.Aircrafts.FirstOrDefault(a => a.aircraftId == aircraftid);
 
             if (selectAircraft == null)
@@ -393,6 +388,16 @@ namespace FlightManagementSystem
             Console.WriteLine(" Enetr passenger id");
             int id = int.Parse(Console.ReadLine());
 
+            while (!context.Passengers.Any(p => p.passengerId == id))
+
+            {
+
+                Console.Write("Passenger not found. Enter again: ");
+
+                id= int.Parse(Console.ReadLine());
+
+            }
+
             var selectpassenger = context.Passengers.FirstOrDefault(p => p.passengerId == id);
 
             if (selectpassenger == null)
@@ -429,6 +434,16 @@ namespace FlightManagementSystem
 
             Console.WriteLine("ENTER FLIGHT ID");
             int  flightID = int.Parse(Console.ReadLine());
+            while (!context.Flights.Any(f => f.flightId == flightID))
+
+            {
+
+                Console.Write("Flight not found. Enter again: ");
+
+                flightID = int.Parse(Console.ReadLine());
+
+            }
+
             var selectedFlight = context.Flights.FirstOrDefault(f => f.flightId == flightID);
 
             if (selectedFlight == null)
@@ -440,7 +455,7 @@ namespace FlightManagementSystem
 
             }
 
-            string seatLabel = "Seat-" + selectedFlight.vailableSeats;
+            string seatLabel = "Seat-" + selectedFlight.vailableSeats;////////
 
 
             int bookid = context.Bookings.Count + 1;
@@ -555,14 +570,14 @@ namespace FlightManagementSystem
             if (pilot != null)
 
             {
-                Console.WriteLine("Enter Flight Duration (hours):");
+                Console.WriteLine("Enter Flight Duration (hours):");//assign pilot total flight hour
 
                 int duration = int.Parse(Console.ReadLine());
 
                 pilot.flightHours += duration;
 
             }
-            Console.WriteLine("_____________________________-");
+            Console.WriteLine("_____________________________-");//system confirms the departur
             Console.WriteLine("Flight departed successfully.");
             Console.WriteLine("_____________________________-");
         }
