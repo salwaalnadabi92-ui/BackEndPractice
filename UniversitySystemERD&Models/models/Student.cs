@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using System.Text;
+using System.Xml.Linq;
 
 namespace UniversitySystemERD_Models.models
 {
+    [Index(nameof(email), IsUnique = true)]
     public class Student
     {
 
-
-        
-         [Key]
+        [Key]
         [Required]
         public int studentId { get; set; }//system gentarted
 
