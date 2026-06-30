@@ -1,17 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace UniversitySystemERD_Models.models
 {
     public class Department
     {
-        
-      public int departmentId {  get; set; }// system genrtated
-      public string departmentName {  get; set; }//user input 
-      public string building { get; set; }//user input 
-      public decimal budget { get; set; }//user input 
-      public int headInstructorId { get; set; }//user input 
+
+        [Key]
+        [Required]
+        public int departmentId {  get; set; }// system genrtated
+
+        [Required]
+        [MaxLength(100)]
+        public string departmentName {  get; set; }//user input 
+
+        [MaxLength(20)]
+        public string building { get; set; }//user input 
+        [Required]
+        public decimal budget { get; set; }//user input 
+
+        [ForeignKey("Instructor")]
+        public int headInstructorId { get; set; }//user input 
 
 
 
