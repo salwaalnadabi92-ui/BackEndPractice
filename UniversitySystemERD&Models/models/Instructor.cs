@@ -26,6 +26,7 @@ namespace UniversitySystemERD_Models.models
         [Required]
         public DateTime hireDate { get; set; }//system gentrated
         [Required]
+        [Range(1, double.MaxValue)]
         public decimal salary { get; set; }//user input 
         [Required]
         [MaxLength(50)]
