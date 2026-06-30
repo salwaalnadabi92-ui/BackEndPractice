@@ -24,6 +24,7 @@ namespace UniversitySystemERD_Models.models
         [MaxLength(20)]
         public string? building { get; set; }//user input 
         [Required]
+        [Range(0, double.MaxValue)]
         public decimal budget { get; set; }//user input 
 
         [ForeignKey("instructor")]
