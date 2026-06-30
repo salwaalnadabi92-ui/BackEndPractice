@@ -14,6 +14,7 @@ namespace UniversitySystemERD_Models.models
 
         [Key]
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int courseId {  get; set; }//user input 
 
         [Required]
@@ -27,8 +28,11 @@ namespace UniversitySystemERD_Models.models
         public int creditHours { get; set; }//system calculated 
         [ForeignKey("department")]
         public int departmentId { get; set; }//from the list 
+        public Department department { get; set; }
+
         [ForeignKey("instrutor")]
         public int instructorId { get; set; }//from the list
+        public Instructor instructor { get; set; }
 
         [Required]
         [MaxLength(20)]

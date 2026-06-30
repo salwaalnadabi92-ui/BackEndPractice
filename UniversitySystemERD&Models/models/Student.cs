@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using System.Text;
 using System.Xml.Linq;
@@ -14,6 +15,7 @@ namespace UniversitySystemERD_Models.models
 
         [Key]
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int studentId { get; set; }//system gentarted
 
         [Required]
@@ -25,7 +27,7 @@ namespace UniversitySystemERD_Models.models
         public string email { get; set; }//system gentrated
 
         [MaxLength(20)]
-        public string phoneNumber { get; set; }//user input 
+        public string ?phoneNumber { get; set; }//user input 
 
         [Required]
         public DateTime dateOfBirth { get; set; }//user input 
@@ -36,7 +38,7 @@ namespace UniversitySystemERD_Models.models
 
         [Range(0.0 ,4.0)]
                                                                                                                                                                                                                      
-        public decimal gpa { get; set; }//system calcluated
+        public decimal gpa { get; set; } = 0.0m;//system calcluated
 
 
 

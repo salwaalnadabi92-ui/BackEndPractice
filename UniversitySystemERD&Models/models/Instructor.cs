@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace UniversitySystemERD_Models.models
@@ -12,6 +13,7 @@ namespace UniversitySystemERD_Models.models
 
         [Key]
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int  instructorId {  get; set; }//system genrated 
         [Required]
         [MaxLength(100)]

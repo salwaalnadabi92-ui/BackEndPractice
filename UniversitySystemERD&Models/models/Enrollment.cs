@@ -15,16 +15,19 @@ namespace UniversitySystemERD_Models.models
         [Required]
         public int enrollmentId {  get; set; }//system genrtated
         [ForeignKey("student")]
-        public int    studentId { get; set; }//from list 
+        public int studentId { get; set; }//from list 
+        public Student student { get; set; }
+
         [ForeignKey("course")]
         public int courseId { get; set; }//from list 
+        public Course course { get; set; }
         [Required]
         public DateTime  enrollmentDate { get; set; }//system genrated
         [MaxLength(2)]
-        public string    finalGrade { get; set; }//system calculated
+        public string ?  finalGrade { get; set; }//system calculated
         [Required]
         [MaxLength(20)]
-        public string  status { get; set; }//user input 
+        public string status { get; set; } = "in progress";//user input 
 
 
     }
