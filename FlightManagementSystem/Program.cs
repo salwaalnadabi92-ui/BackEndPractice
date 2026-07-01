@@ -119,7 +119,9 @@ namespace FlightManagementSystem
             if (totalSeats <= 0)
             {
                 Console.WriteLine(" inviald ,total seats not less than or  equal 0");
+                return;
             }
+
 
             int aircraftId = context.Aircrafts.Count + 1;
 
@@ -221,6 +223,7 @@ namespace FlightManagementSystem
 
             {
                 Console.WriteLine(" No available flight");
+                return;
             }
 
 
