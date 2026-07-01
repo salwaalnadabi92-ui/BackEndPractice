@@ -29,6 +29,12 @@ namespace UniversitySystemERD_Models.models
         [MaxLength(20)]
         public string status { get; set; } = "in progress";//user input 
 
+        [ForeignKey("student")]
+        public int studentId { get; set; }// Foreign key property 
+        public Student  student { get; set; } // Navigation property
+
+
+
 
     }
 }
