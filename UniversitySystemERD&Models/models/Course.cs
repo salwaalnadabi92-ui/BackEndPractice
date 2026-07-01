@@ -49,7 +49,9 @@ namespace UniversitySystemERD_Models.models
 
         public List<instrutor> instrutor { get; set; } // Navigation property (course:instrutor)
 
-
+        [ ForeignKey("department")]
+        public int departmentId { get; set; }//Foreign key property 
+        public department department { get; set; }//Navigation property (department: course)
 
 
     }
