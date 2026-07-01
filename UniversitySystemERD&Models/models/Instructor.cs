@@ -33,9 +33,8 @@ namespace UniversitySystemERD_Models.models
         public  string academicTitle { get; set; }//user input 
 
 
-        [ForeignKey("course")]
-        public int courseId { get; set; }// Foreign key property
-        public course Course {  get; set; }//Navigation property(course: instrutor)
+       
+        public  List<course> course {  get; set; }//Navigation property(course: instrutor)
 
 
 
