@@ -1,22 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-
+using System.Xml.Linq;
+using Microsoft.EntityFrameworkCore
 namespace E_CommerceSystemERD_Models.modles
 {
+
+
+    [Index(nameof(username), IsUnique = true)]
+
+    [Index(nameof(email), IsUnique = true)]
     public class User
     {
+           [Required]
+           [Key]
+           [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+            public    int  userId { get; set; }
 
-           public    int  userId { get; set; }                                    //Primary Key, auto-generated, not null
-           public  string  username { get; set; }                                    //string// Required, unique, max length 50
-           public  string email { get; set; }                                   //Required, unique, max length 150
-           public  string passwordHash { get; set; }                              //string Required, max length 256
-           public  string fullName { get; set; }                                    //string Required, max length 100
-           public  string phoneNumber { get; set; }                                     //string Optional, max length 20
-           public  string address { get; set; }                                       //string Optional, max length 30
+           [Required]
+           [MaxLength(50)]
+           public  string  username { get; set; }
 
-           public DateTime registrationDate { get; set; }//Required
-           public  bool    isActive { get; set; }//Default true
+           [Required]
+           [MaxLength(150)]
+           public  string email { get; set; }
+
+              [Required]
+             [MaxLength(256)]
+            public  string passwordHash { get; set; }
+
+           [Required]
+           [MaxLength(100)]
+          public  string fullName { get; set; }
+
+
+            [MaxLength(20)]
+           public  string? phoneNumber { get; set; }
+            [MaxLength(30)]
+            public  string ?address { get; set; }
+            [Required]
+           public DateTime registrationDate { get; set; }
+
+
+        public bool isActive { get; set; } = true;
 
 
     }
