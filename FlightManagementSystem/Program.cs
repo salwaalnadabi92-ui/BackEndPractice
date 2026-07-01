@@ -268,6 +268,7 @@ namespace FlightManagementSystem
             if(Aircrafts.Count == 0)
             {
                 Console.WriteLine("No aviaable aircraft");
+                return
             }
 
             Console.WriteLine(" avialable aircraft");//display aircrafts 
