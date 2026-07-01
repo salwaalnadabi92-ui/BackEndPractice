@@ -116,6 +116,11 @@ namespace FlightManagementSystem
 
             int totalSeats = Convert.ToInt32(Console.ReadLine());
 
+            if (totalSeats <= 0)
+            {
+                Console.WriteLine(" inviald ,total seats not less than or  equal 0");
+            }
+
             int aircraftId = context.Aircrafts.Count + 1;
 
 
@@ -139,6 +144,7 @@ namespace FlightManagementSystem
             Console.WriteLine("Aircraft ID: " +aircraftId);
             Console.WriteLine("_____________________________");
 
+        }
         }
 
 
