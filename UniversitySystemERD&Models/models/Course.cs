@@ -26,28 +26,24 @@ namespace UniversitySystemERD_Models.models
         [Required]
         [Range(1, 6)]
         public int creditHours { get; set; }//system calculated 
-        [ForeignKey("department")]
-        public int departmentId { get; set; }//from the list 
-        public Department department { get; set; }
-
-        [ForeignKey("instrutor")]
-        public int instructorId { get; set; }//from the list
-        public Instructor instructor { get; set; }
-
+      
         [Required]
         [MaxLength(20)]
         public string semesterOffered { get; set; }//system calculated
 
 
         [ForeignKey("student")]
-        public int studentId { get; set; }//        Foreign key property
+        public int studentId { get; set; }// Foreign key property
         public List<student> student { get; set; } // Navigation property (student :course)
 
 
         public List<enrollment> enrollment { get; set; } // Navigation property (course:enrollment)
 
 
-        public List<instrutor> instrutor { get; set; } // Navigation property (course:instrutor)
+        [ForeignKey("instrutor")]
+        public int instructorId { get; set; }// Foreign key property
+        public instrutor instrutor { get; set; } // Navigation property (course:instrutor)
+
 
         [ ForeignKey("department")]
         public int departmentId { get; set; }//Foreign key property 
