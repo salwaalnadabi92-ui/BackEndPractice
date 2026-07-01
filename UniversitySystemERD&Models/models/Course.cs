@@ -39,7 +39,15 @@ namespace UniversitySystemERD_Models.models
         public string semesterOffered { get; set; }//system calculated
 
 
+        [ForeignKey("student")]
+        public int studentId { get; set; }//        Foreign key property
+        public List<student> student { get; set; } // Navigation property (student :course)
 
+
+        public List<enrollment> enrollment { get; set; } // Navigation property (course:enrollment)
+
+
+        public List<instrutor> instrutor { get; set; } // Navigation property (course:instrutor)
 
 
 
