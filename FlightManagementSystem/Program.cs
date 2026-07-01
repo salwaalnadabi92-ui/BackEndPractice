@@ -478,8 +478,9 @@ namespace FlightManagementSystem
                 return;
 
             }
-            Console.WriteLine("Enter seat number");//ask user to enter seat number
-            string seatLabel=Console.ReadLine();
+            //genrated seat number  
+
+            string seatLabel= seatNumber.count+1
 
 
             int bookid = context.Bookings.Count + 1;//assinge booking id
@@ -497,9 +498,11 @@ namespace FlightManagementSystem
 
                 seatNumber = seatLabel,
 
+                bookingDate=selectedFlight.flightDate,
+
                 totalPrice = selectedFlight.ticketPrice,
 
-              bookingStatus = "Confirmed"
+                bookingStatus = "Confirmed"
 
             };
 
