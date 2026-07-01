@@ -539,9 +539,9 @@ namespace FlightManagementSystem
 
             var checkFlight = context.flight.FirstOrDefault(fl => fl.flightId ==checkid.flightID);//find the flight which related with same booking
 
-
-                checkid.bookingStatus = "cancelled";
-
+              if (checkFlight == null) {
+               checkid.bookingStatus = "cancelled";
+                     }
                checkFlight.availableSeats++;
             
 
@@ -549,7 +549,7 @@ namespace FlightManagementSystem
             Console.WriteLine(" booking cancel succussfuly");
             Console.WriteLine("_____________________________");
 
-        }
+}}
 
         //8 Depart Flight
 
