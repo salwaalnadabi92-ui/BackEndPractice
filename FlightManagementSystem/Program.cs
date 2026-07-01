@@ -352,8 +352,17 @@ namespace FlightManagementSystem
 
             decimal ticketPrice = decimal.Parse(Console.ReadLine());
 
-            string flightCode = "OA-" + (context.Flights.Count() + 1);//auto genrated flight code
-             //miss id
+            if(ticketPrice > 0)//vailated 
+            {
+                Console.WriteLine("ticket price must be grather than 0 ");
+                return;
+            }
+
+
+
+        string flightCode = "OA-" + (context.Flights.Count() + 1);//auto genrated flight code
+
+            int flightid = context.Flights.Count + 1//flight id
 
             Console.WriteLine("------------------------");
             Console.WriteLine("Flight Recored");
@@ -394,7 +403,7 @@ namespace FlightManagementSystem
             Console.WriteLine("Status: "+flight.flightStatus);
             Console.WriteLine("_________________________________________");
 
-        }
+        }}}
 
         //6 book flight 
 
