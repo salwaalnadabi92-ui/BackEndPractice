@@ -41,9 +41,9 @@ namespace UniversitySystemERD_Models.models
         public decimal gpa { get; set; } = 0.0m;//system calcluated
 
 
-        public List<enrollment> enrollment{ get; set; } // Navigation property (student :enrollment)
+        public List<Enrollment> enrollment{ get; set; } // Navigation property (student :enrollment)
 
-        public List<course> course { get; set; } // Navigation property (student : course)
+        public List<Course> course { get; set; } // Navigation property (student : course)
 
 
 

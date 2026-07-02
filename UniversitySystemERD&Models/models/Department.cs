@@ -32,7 +32,7 @@ namespace UniversitySystemERD_Models.models
         public Instructor instructor { get; set; }//Navigation property( department: instructor)
 
 
-        public List<course> course{ get; set; } // Navigation property( department: course)
+        public List<Course> course{ get; set; } // Navigation property( department: course)
 
 
 

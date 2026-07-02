@@ -33,8 +33,8 @@ namespace UniversitySystemERD_Models.models
         [MaxLength(50)]
         public  string academicTitle { get; set; }//user input 
 
-        public department department { get; set; }; //Navigation property (department:instrutor)
-        public  List<course> course {  get; set; }//Navigation property(course: instrutor)
+        public Department department { get; set; }; //Navigation property (department:instrutor)
+        public  List<Course> course {  get; set; }//Navigation property(course: instrutor)
 
 
 

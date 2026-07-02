@@ -28,7 +28,7 @@ namespace UniversitySystemERD_Models.models
 
         [ForeignKey("course")]
         public int courseId { get; set; }//Foreign key property 
-        public course course { get; set; } // Navigation property(course : enrollment)
+        public Course course { get; set; } // Navigation property(course : enrollment)
 
 
     }
