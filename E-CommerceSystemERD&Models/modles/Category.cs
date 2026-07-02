@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace E_CommerceSystemERD_Models.modles
 {
     public  class Category
     {
-
-                public int  categoryId { get; set; }//int Primary Key, auto-generated, not null
-                public string categoryName { get; set; }//string Required, unique, max length 100
-                public string description { get; set; }//string Optional, max length 500
-                public string imageUrl { get; set; }//string Optional, max length 300
+                      [Key]
+                      [Required]
+                      [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+                      public int  categoryId { get; set; }//system genrated 
+                      [Required]
+                      [MaxLength(100)]
+                      public string categoryName { get; set; }//s uniqu user input 
+                      [MaxLength(500)]
+                      public string? description { get; set; }//user input
+                     [MaxLength(300)]
+                     public string? imageUrl { get; set; }//user input 
 
 
 
