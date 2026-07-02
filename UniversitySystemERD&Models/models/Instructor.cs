@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -32,8 +33,7 @@ namespace UniversitySystemERD_Models.models
         [MaxLength(50)]
         public  string academicTitle { get; set; }//user input 
 
-
-       
+        public department department { get; set; }; //Navigation property (department:instrutor)
         public  List<course> course {  get; set; }//Navigation property(course: instrutor)
 
 
