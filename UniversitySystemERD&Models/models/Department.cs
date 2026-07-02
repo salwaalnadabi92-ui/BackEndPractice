@@ -28,8 +28,8 @@ namespace UniversitySystemERD_Models.models
         public decimal budget { get; set; }//user input 
 
         [ForeignKey("instructor")]
-        public int headInstructorId { get; set; }//user input 
-        public Instructor instructor { get; set; }
+        public int headInstructorId { get; set; }// Foreign key property 
+        public Instructor instructor { get; set; }//Navigation property( department: instructor)
 
 
         public List<course> course{ get; set; } // Navigation property( department: course)
