@@ -41,14 +41,14 @@ namespace E_CommerceSystemERD_Models.modles
             public bool isAvailable { get; set; } = true;//defulat value
 
 
-
-
-
      
-        public List<Review> Reviews { get; set; } = new List<Review>();   //  navigation — ( Product : Reviews)
+        public List<Review> Reviews { get; set; } = new List<Review>();   //  navigation property  — ( Product : Reviews)
 
-        //public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();//
-        //// reverse navigation — one Product appears in many OrderItems (bridge table)
+
+
+        public List<orderItem> OrderItems { get; set; } = new List<orderItem>();//  navigation  property      — ( Product appears in many OrderItems )
+
+
 
 
 
