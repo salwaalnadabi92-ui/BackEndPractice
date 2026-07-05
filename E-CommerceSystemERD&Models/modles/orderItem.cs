@@ -9,6 +9,12 @@ namespace E_CommerceSystemERD_Models.modles
     public  class orderItem
 
     {
+        [Required]
+        [Range(1,999)]
+        public int quantity { get; set; }
+      
+
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int orderItemId { get; set; }  // system generated
