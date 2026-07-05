@@ -37,8 +37,10 @@ namespace E_CommerceSystemERD_Models.modles
 
             [MaxLength(20)]
             public  string? phoneNumber { get; set; }//user input 
+
             [MaxLength(30)]
-            public  string ?address { get; set; }
+            public  string ?address { get; set; }//user input 
+
             [Required]
             public DateTime registrationDate { get; set; }//system genrated
 
@@ -46,11 +48,11 @@ namespace E_CommerceSystemERD_Models.modles
            public bool isActive { get; set; } = true; //defualt value
 
     
-          public List<Review> Reviews { get; set; }//    navigation (user : reviews)
+          public List<Review> Reviews { get; set; }//navigation  property -(user : reviews)
 
 
-         
-         public List<Order> Orders { get; set; } //  navigation — (User :Orders)
+
+        public List<Order> Orders { get; set; } //navigation property  — (User :Orders)
 
 
     }
