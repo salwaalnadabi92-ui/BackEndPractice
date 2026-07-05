@@ -47,8 +47,8 @@ namespace E_CommerceSystemERD_Models.modles
      
         public List<Review> Reviews { get; set; } = new List<Review>();   //  navigation — ( Product : Reviews)
 
-        public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();//
-        // reverse navigation — one Product appears in many OrderItems (bridge table)
+        //public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();//
+        //// reverse navigation — one Product appears in many OrderItems (bridge table)
 
 
 
