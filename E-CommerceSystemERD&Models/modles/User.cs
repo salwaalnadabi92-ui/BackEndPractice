@@ -14,36 +14,43 @@ namespace E_CommerceSystemERD_Models.modles
            [Required]
            [Key]
            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-            public    int  userId { get; set; }
+            public    int  userId { get; set; }//system genrated
 
            [Required]
            [MaxLength(50)]
           
-            public  string  username { get; set; }
+            public  string  username { get; set; }//user input 
 
            [Required]
            [MaxLength(150)]
 
-           public  string email { get; set; }
+           public  string email { get; set; }//user input 
 
            [Required]
            [MaxLength(256)]
-            public  string passwordHash { get; set; }
+            public  string passwordHash { get; set; } //user input 
 
            [Required]
            [MaxLength(100)]
-           public  string fullName { get; set; }
+           public  string fullName { get; set; }//user input 
 
 
             [MaxLength(20)]
-            public  string? phoneNumber { get; set; }
+            public  string? phoneNumber { get; set; }//user input 
             [MaxLength(30)]
             public  string ?address { get; set; }
             [Required]
-            public DateTime registrationDate { get; set; }
+            public DateTime registrationDate { get; set; }//system genrated
 
 
-           public bool isActive { get; set; } = true;
+           public bool isActive { get; set; } = true; //defualt value
+
+    
+          public List<Review> Reviews { get; set; }//    navigation (user : reviews)
+
+
+         
+         public List<Order> Orders { get; set; } //  navigation — (User :Orders)
 
 
     }
