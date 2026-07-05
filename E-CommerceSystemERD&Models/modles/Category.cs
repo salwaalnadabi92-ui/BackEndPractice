@@ -14,11 +14,11 @@ namespace E_CommerceSystemERD_Models.modles
                       public int  categoryId { get; set; }//system genrated 
                       [Required]
                       [MaxLength(100)]
-                      public string categoryName { get; set; }//s uniqu user input 
+                      public string categoryName { get; set; }// uniqu user input 
                       [MaxLength(500)]
                       public string? description { get; set; }//user input
-                     [MaxLength(300)]
-                     public string? imageUrl { get; set; }//user input 
+                      [MaxLength(300)]
+                      public string? imageUrl { get; set; }//user input 
 
 
 
