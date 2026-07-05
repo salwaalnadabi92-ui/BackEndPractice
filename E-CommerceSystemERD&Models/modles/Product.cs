@@ -12,32 +12,43 @@ namespace E_CommerceSystemERD_Models.modles
             [Key]
             [Required]
             [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-            public  int  productId { get; set; }
+            public  int  productId { get; set; }//system gentrated
+
             [Required]
             [MaxLength(150)]
-            public string  productName { get; set; }
+            public string  productName { get; set; }//user input 
+
             [MaxLength(1000)]
-            public string ? description { get; set; }
-            [Required]
-            [Range(1,decimal.MaxValue)]
-            public decimal   price { get; set; }
-            [Required]
-            [Range(0, int.MaxValue)]
-            public int  stockQuantity { get; set; }=0
+            public string ? description { get; set; }//user input 
+
+              [Column(TypeName = "decimal(10,2)")]
+              [Range(0.01, double.MaxValue)]
+              public decimal price { get; set; }//user input 
+
+             [Required]
+            [Range(0, double.MaxValue)]
+            public int stockQuantity { get; set; } = 0;//defualt value
             [MaxLength(300)]
-            public string ?  imageUrl { get; set; }
+            public string ?  imageUrl { get; set; }//user input 
+
             [Required]
-            [ForeignKey("")]
-            public  int  categoryId { get; set; }
-            [Required]
-            public DateTime createdAt { get; set; }
-            public  bool isAvailable { get; set; }= true
+            [ForeignKey("category")]
+            public  int  categoryId { get; set; }//Foreign Key //from list 
+            public Category category { get; set; }// navigation property( category: product)
+          
+             [Required]
+             public DateTime createdAt { get; set; }//system genrated
+            public bool isAvailable { get; set; } = true;//defulat value
 
 
 
 
 
+     
+        public List<Review> Reviews { get; set; } = new List<Review>();   //  navigation — ( Product : Reviews)
 
+        public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();//
+        // reverse navigation — one Product appears in many OrderItems (bridge table)
 
 
 
