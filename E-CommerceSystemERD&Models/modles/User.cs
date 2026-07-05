@@ -47,10 +47,10 @@ namespace E_CommerceSystemERD_Models.modles
 
            public bool isActive { get; set; } = true; //defualt value
 
+
+
     
           public List<Review> Reviews { get; set; }//navigation  property -(user : reviews)
-
-
 
         public List<Order> Orders { get; set; } //navigation property  — (User :Orders)
 
