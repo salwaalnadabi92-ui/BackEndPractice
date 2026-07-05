@@ -48,6 +48,8 @@ namespace E_CommerceSystemERD_Models.modles
 
 
 
+        public List<orderItem> OrderItems { get; set; } = new List<orderItem>();
+
 
 
     }
