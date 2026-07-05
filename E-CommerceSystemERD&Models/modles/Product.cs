@@ -21,13 +21,18 @@ namespace E_CommerceSystemERD_Models.modles
             [MaxLength(1000)]
             public string ? description { get; set; }//user input 
 
-              [Column(TypeName = "decimal(10,2)")]
-              [Range(0.01, double.MaxValue)]
+
+               //[Column(TypeName = "decimal(10,2)")]
+
+              [Range(1,double.MaxValue)]
               public decimal price { get; set; }//user input 
 
+
              [Required]
-            [Range(0, double.MaxValue)]
-            public int stockQuantity { get; set; } = 0;//defualt value
+             [Range(0, int.MaxValue)]
+              public int stockQuantity { get; set; } = 0;//defualt value
+
+
             [MaxLength(300)]
             public string ?  imageUrl { get; set; }//user input 
 
