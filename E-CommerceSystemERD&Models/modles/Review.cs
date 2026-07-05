@@ -17,14 +17,14 @@ namespace E_CommerceSystemERD_Models.modles
         [Required]
         [ForeignKey("user")]
         public int userId {  get; set; }//foreign key //from list
-        public User user { get; set; }                    // navigation property(user:review)
+        public User user { get; set; } // navigation property(user:review)
 
 
 
         [Required]
         [ForeignKey("product")]
         public int  productId {  get; set; }//foreign key //from list
-        public Product product { get; set; }              // navigation property(product: review)
+        public Product product { get; set; }  // navigation property(product: review)
 
 
         [Required]
