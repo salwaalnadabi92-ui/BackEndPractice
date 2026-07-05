@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_CommerceSystemERD_Models.modles
 {
+
+
+
     public  class Category
     {
                       [Key]
@@ -14,7 +18,8 @@ namespace E_CommerceSystemERD_Models.modles
                       public int  categoryId { get; set; }//system genrated 
                       [Required]
                       [MaxLength(100)]
-                      public string categoryName { get; set; }// uniqu user input 
+                      [Index(IsUnique = true)]
+                      public string categoryName { get; set; }//user input 
                       [MaxLength(500)]
                       public string? description { get; set; }//user input
                       [MaxLength(300)]
