@@ -12,22 +12,28 @@ namespace E_CommerceSystemERD_Models.modles
         [Key]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int reviewId {  get; set; }
+        public int reviewId {  get; set; }//system genrated
 
         [Required]
-        [ForeignKey("")]
-        public int userId {  get; set; }
+        [ForeignKey("user")]
+        public int userId {  get; set; }//foreign key //from list
+        public User user { get; set; }                    // navigation property(user:review)
+
+
 
         [Required]
-        [ForeignKey("")]
-        public int  productId {  get; set; }
+        [ForeignKey("product")]
+        public int  productId {  get; set; }//foreign key //from list
+        public Product product { get; set; }              // navigation property(product: review)
+
+
         [Required]
         [Range(1, 5)]
-        public   int  rating {  get; set; }
+        public   int  rating {  get; set; }//user input 
         [MaxLength(1000)]
-        public   string ? comment {  get; set; }
+        public   string ? comment {  get; set; }//user input 
         [Required]
-        public   DateTime  reviewDate {  get; set; }
+        public   DateTime  reviewDate {  get; set; }//system genrated
 
     }
 }
