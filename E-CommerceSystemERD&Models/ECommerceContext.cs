@@ -19,12 +19,11 @@ namespace E_CommerceSystemERD_Models
         public DbSet<OrderItem> OrderItems { get; set; }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            options.UseSqlServer("Server=.\\SQLEXPRESS;Database=ECommerceDB;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(
+                "Server=DESKTOP-SQ20NIN\\MSSQLSERVER01;Database=ECommerceDB;Trusted_Connection=True;TrustServerCertificate=True;");
         }
-
-
 
 
 
