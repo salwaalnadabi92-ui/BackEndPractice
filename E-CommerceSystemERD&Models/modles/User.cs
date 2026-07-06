@@ -52,7 +52,7 @@ namespace E_CommerceSystemERD_Models.modles
     
           public List<Review> Reviews { get; set; }//navigation  property -(user : reviews)
 
-        public List<Order> Orders { get; set; } //navigation property  — (User :Orders)
+        public List<OrderItem> Orders { get; set; } //navigation property  — (User :Orders)
 
 
     }
