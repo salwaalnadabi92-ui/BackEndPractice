@@ -31,7 +31,9 @@ namespace E_CommerceSystemERD_Models.modles
         public int productId { get; set; } // foreign key //from list
         public Product product { get; set; }// navigation property 
 
-
+        [Required]
+        [Column(TypeName = "decimal(10,2)")]
+        public decimal unitPrice { get; set; }  // calculated — copied from product.price at the time of ordering
 
 
 
