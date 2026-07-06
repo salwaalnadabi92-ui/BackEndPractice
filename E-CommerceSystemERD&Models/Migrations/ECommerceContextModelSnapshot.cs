@@ -107,6 +107,9 @@ namespace E_CommerceSystemERD_Models.Migrations
                     b.Property<int>("quantity")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("unitPrice")
+                        .HasColumnType("decimal(10,2)");
+
                     b.Property<int?>("userId")
                         .HasColumnType("int");
 
