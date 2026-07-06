@@ -6,7 +6,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 namespace E_CommerceSystemERD_Models.modles
 {
-    public  class orderItem
+    public  class OrderItem
 
     {
         [Required]
