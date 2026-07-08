@@ -1,4 +1,5 @@
 ﻿using E_CommerceSystemERD_Models.modles;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 
 namespace E_CommerceSystemERD_Models
@@ -316,9 +317,26 @@ namespace E_CommerceSystemERD_Models
 
         public static void getCategory()
         {
+            Console.WriteLine("enter  category id ");
+            int categoryId=int.Parse(Console.ReadLine());
+
+            var category =context.categories
+                .Include(c=>c.Products)
+                .FirstOrDefault(C=>C.categoryId==categoryId);
+
+            Console.WriteLine("category name :"+ category.categoryName);
+            Console.WriteLine("description :" + category.description);
 
 
+            Console.WriteLine("___ All product___");
 
+            foreach(var item in category.Products)
+            {
+                Console.WriteLine(item.productName);
+
+            }
+
+                            
         }
 
 
