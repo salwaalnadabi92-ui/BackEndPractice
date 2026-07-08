@@ -2,7 +2,7 @@
 
 namespace E_CommerceSystemERD_Models
 {
-    public  class Program
+    public class Program
 
     {
 
@@ -20,8 +20,8 @@ namespace E_CommerceSystemERD_Models
             string email = Console.ReadLine();
 
             Console.Write("Enter password: ");
-            string passwordHash= Console.ReadLine();
-           
+            string passwordHash = Console.ReadLine();
+
             Console.Write("Enter full name: ");
             string fullName = Console.ReadLine();
 
@@ -31,9 +31,9 @@ namespace E_CommerceSystemERD_Models
             Console.Write("Enter address (optional, press Enter to skip): ");
             string address = Console.ReadLine();
 
-     
-            User newUser= new User()// add new user object
-         
+
+            User newUser = new User()// add new user object
+
             {
                 username = username,
                 email = email,
@@ -48,11 +48,80 @@ namespace E_CommerceSystemERD_Models
             context.users.Add(newUser);
             context.SaveChanges();
 
-         Console.WriteLine("User registered successfully. Assigned ID:" +newUser.userId);
+            Console.WriteLine("User registered successfully. Assigned ID:" + newUser.userId);
+        }
+
+
+        public static void NewProducToCategory()
+        {
+
+            var displayCategories = context.categories.ToList();//dispaly all category
+
+            foreach (var category in displayCategories)
+            {
+                Console.WriteLine("categoryId:" + category.categoryId + "| categoryName :" + category.categoryName + "| description:" + category.description + "|  imageUrl:" + category.imageUrl);
+            }
+
+            Console.WriteLine("Enter category id: ");//read catogroy selection
+            int categoryId = int.Parse(Console.ReadLine());
+
+            Category categorySelection = context.categories.FirstOrDefault(c => c.categoryId == categoryId);
+
+            if (categorySelection == null)
+            {
+                Console.WriteLine("category not found");
+                return;
+
+            }
+            //read all product details from user
+            Console.Write("Enter product name: ");
+            string productName = Console.ReadLine();
+
+            Console.Write("Enter description (optional): ");
+            string description = Console.ReadLine();
+
+            Console.WriteLine("Enter product price (optional): ");
+            decimal price = decimal.Parse(Console.ReadLine());
+
+            Console.Write("Enter stock quantity: ");
+            int stockQuantity = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter image Url: ");
+            string imageUrl = Console.ReadLine();
+
+
+            Product newProduct = new Product//add new object
+            {
+                productName = productName,
+                description = description,
+                price = price,
+                stockQuantity = stockQuantity,
+                categoryId = categoryId,
+                createdAt = DateTime.Now,
+                isAvailable = true
+            };
+
+            context.Products.Add(newProduct);
+            context.SaveChanges();
+
+
+            Console.WriteLine("=== Product added to category successfully ===");
+            Console.WriteLine("User ID: " + newProduct.productId);
         }
 
 
 
+
+    
+
+
+
+
+
+
+
+
+
+        
 
 
 
@@ -104,8 +173,9 @@ namespace E_CommerceSystemERD_Models
                         break;
 
                     case 2:
+                        NewProducToCategory();
 
-                       
+
 
                         break;
 
