@@ -268,14 +268,6 @@ namespace E_CommerceSystemERD_Models
         }
 
 
-
-
-
-
-
-
-
-
         //8 view all product 
         public static void viewAllProduct()
         {
@@ -290,9 +282,9 @@ namespace E_CommerceSystemERD_Models
             }
         }
 
-            //9 filter product by category and price range 
+       //9 filter product by category and price range 
 
-             public static void fliterProduct()
+        public static void fliterProduct()
         {
               
             Console.WriteLine("enter category id ");
