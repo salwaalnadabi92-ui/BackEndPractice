@@ -159,7 +159,7 @@ namespace E_CommerceSystemERD_Models
             Review newreview = new Review
             {
 
-                userId = userId,
+                
                 productId = productId,
                 rating=   rate  ,
                  comment=  comment  ,
@@ -238,7 +238,7 @@ namespace E_CommerceSystemERD_Models
                     return;
                 }
 
-                relatedProduct.stockQuantity += loadOrder.quantity;
+                relatedProduct.stockQuantity += item.quantity;
             }
 
             order.status = "cancelled";
@@ -319,7 +319,15 @@ namespace E_CommerceSystemERD_Models
         }
 
 
+        //10 :  get category with all its product
 
+
+        public static void getCategory()
+        {
+
+
+
+        }
 
 
 
@@ -417,6 +425,8 @@ namespace E_CommerceSystemERD_Models
                         break;
 
                     case 10:
+
+                        getCategory();
 
                         break;
 
