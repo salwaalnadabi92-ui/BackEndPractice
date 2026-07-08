@@ -412,7 +412,7 @@ namespace E_CommerceSystemERD_Models
 
                     case 6:
 
-                    
+                    cencelOrder();
 
                         break;
 
