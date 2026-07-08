@@ -110,8 +110,57 @@ namespace E_CommerceSystemERD_Models
 
 
 
+        public static void WriteProductReview()
+        {
 
-    
+            foreach (User user in context.users)
+            {
+                Console.WriteLine("UserId:" + user.userId + "| Username :" + user.username + "| PasswordHash:" + user.passwordHash + "|FullName :" + user.fullName +
+
+                    "PhoneNumber :" + user.phoneNumber + "|Address:" + user.address + "|RegistrationDate :" + user.registrationDate + "|IsActive:" + user.isActive
+                    );
+            
+
+                Console.WriteLine("Enter user id");
+                int userId = int.Parse(Console.ReadLine());
+
+            }
+
+
+            foreach (Product product in context.Products)
+                {
+
+                Console.WriteLine("productId:" + product.productId + "| productName :" + product.productName + "| description :" + product.description + "|stockQuantity  :" + product.stockQuantity); 
+ 
+
+            }
+
+            Console.WriteLine("Enter product id");
+            int productId = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter product id");
+            int rate= int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter product id");
+            string comment =(Console.ReadLine());
+
+
+            Review newreview = new Review
+            {
+
+                userId = userId,
+                productId = productId,
+                rating=   rate  ,
+                 comment=  comment  ,
+                reviewDate = DateTime.Now,
+
+            };
+            
+            context.Reviews.Add(newreview);
+
+            context.SaveChanges();
+
+        }
 
 
 
@@ -121,7 +170,8 @@ namespace E_CommerceSystemERD_Models
 
 
 
-        
+
+
 
 
 
@@ -186,7 +236,7 @@ namespace E_CommerceSystemERD_Models
 
                     case 4:
 
-                     
+                        WriteProductReview();
 
                         break;
 
