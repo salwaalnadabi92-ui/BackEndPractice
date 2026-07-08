@@ -1,4 +1,5 @@
 ﻿using E_CommerceSystemERD_Models.modles;
+using Microsoft.Identity.Client;
 
 namespace E_CommerceSystemERD_Models
 {
@@ -227,13 +228,41 @@ namespace E_CommerceSystemERD_Models
             var product = context.Products.ToList();
 
 
-            foreach ( var item in product ) {
+            foreach (var item in product)
+            {
 
-                Console.WriteLine("productId:" + item.productId + "| productName :" + item.productName + "| description :" + item.description + "|stockQuantity  :" + item.stockQuantity + "|imageUrl:" + item.imageUrl + "|categoryId :"  +item.categoryId+ "|createdAt:"+ item.createdAt+ "|isAvailable:" + item.isAvailable);
+                Console.WriteLine("productId:" + item.productId + "| productName :" + item.productName + "| description :" + item.description + "|stockQuantity  :" + item.stockQuantity + "|imageUrl:" + item.imageUrl + "|categoryId :" + item.categoryId + "|createdAt:" + item.createdAt + "|isAvailable:" + item.isAvailable);
 
             }
+        }
+
+            //9 filter product by category and price range 
+
+             public static void fliterProduct()
+        {
+              
+            Console.WriteLine("enter category id ");
+            int categoryId= int.Parse(Console.ReadLine());
 
 
+            Console.WriteLine("enter minimum price");
+            decimal   minPrice = decimal.Parse(Console.ReadLine());
+
+             Console.WriteLine("enter maxmum price");
+            decimal maxPrice = decimal.Parse(Console.ReadLine());
+
+            var fliter=context.Products.Where(p=>p.categoryId==categoryId  && p.price ==minPrice&& p.price==maxPrice)
+                                       .OrderBy(p => p.price)
+                                        .ToList();
+
+            foreach(var item in fliter)
+            {
+                Console.WriteLine("dispaly :" + fliter);
+            }
+
+            context.SaveChanges();
+         
+        }
 
 
 
@@ -327,6 +356,8 @@ namespace E_CommerceSystemERD_Models
                         break;
 
                     case 9:
+
+                        fliterProduct();
 
                         break;
 
