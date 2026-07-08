@@ -1,7 +1,68 @@
-﻿namespace E_CommerceSystemERD_Models
+﻿using E_CommerceSystemERD_Models.modles;
+
+namespace E_CommerceSystemERD_Models
 {
-    internal class Program
+    public  class Program
+
     {
+
+        public static ECommerceContext context = new ECommerceContext();
+
+
+        public static void RegisterUser()
+        {
+            Console.WriteLine("=== Register New User ===");
+
+            Console.Write("Enter username: ");
+            string username = Console.ReadLine();
+
+            Console.Write("Enter email: ");
+            string email = Console.ReadLine();
+
+            Console.Write("Enter password: ");
+            string passwordHash= Console.ReadLine();
+           
+            Console.Write("Enter full name: ");
+            string fullName = Console.ReadLine();
+
+            Console.Write("Enter phone number (optional, press Enter to skip): ");
+            string phone = Console.ReadLine();
+
+            Console.Write("Enter address (optional, press Enter to skip): ");
+            string address = Console.ReadLine();
+
+     
+            User newUser= new User()// add new user object
+         
+            {
+                username = username,
+                email = email,
+                passwordHash = passwordHash,
+                fullName = fullName,
+                phoneNumber = string.IsNullOrWhiteSpace(phone) ? null : phone,
+                address = string.IsNullOrWhiteSpace(address) ? null : address,
+                registrationDate = DateTime.Now,
+                isActive = true
+            };
+
+            context.users.Add(newUser);
+            context.SaveChanges();
+
+         Console.WriteLine("User registered successfully. Assigned ID:" +newUser.userId);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         static void Main(string[] args)
         {
 
@@ -37,7 +98,7 @@
 
                     case 1:
 
-                      
+                        RegisterUser();
 
 
                         break;
