@@ -307,7 +307,7 @@ namespace E_CommerceSystemERD_Models
 
                     case 7:
 
-                    
+                        deleteReview();
 
 
                         break;
