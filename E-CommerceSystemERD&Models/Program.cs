@@ -113,6 +113,98 @@ namespace E_CommerceSystemERD_Models
         }
 
 
+        //3 :place an order
+
+        //public static void placeOrder()
+        //{
+            
+        //        Console.WriteLine("\n=== Place New Order ===");
+
+        //        Console.WriteLine("Users:");
+        //        foreach (User u in context.Users)
+        //            Console.WriteLine($"  ID: {u.userId}  |  {u.username}");
+
+        //        Console.Write("Enter user ID: ");
+        //        int userId = int.Parse(Console.ReadLine());
+        //        User user = context.Users.FirstOrDefault(u => u.userId == userId);
+
+        //        Console.Write("Enter shipping address: ");
+        //        string shippingAddress = Console.ReadLine();
+
+        //        Console.WriteLine("Payment methods: 1-CreditCard  2-DebitCard  3-PayPal  4-Cash");
+        //        Console.Write("Choose payment method: ");
+        //        int payChoice = int.Parse(Console.ReadLine());
+        //        string[] payMethods = { "CreditCard", "DebitCard", "PayPal", "Cash" };
+        //        string paymentMethod = payMethods[payChoice - 1];
+
+        //        int orderId = context.Orders.Count + 1;
+        //        Order order = new Order
+        //        {
+        //            orderId = orderId,
+        //            userId = userId,
+        //            User = user,         // set navigation property
+        //            orderDate = DateTime.Now,
+        //            totalAmount = 0,
+        //            status = "Pending",
+        //            shippingAddress = shippingAddress,
+        //            paymentMethod = paymentMethod
+        //        };
+        //        context.Orders.Add(order);
+        //        user.Orders.Add(order);             // maintain reverse navigation
+
+        //        // Add products to the order
+        //        bool addingItems = true;
+        //        while (addingItems)
+        //        {
+        //            Console.WriteLine("\nAvailable products:");
+        //            foreach (Product p in context.Products.Where(p => p.isAvailable && p.stockQuantity > 0).ToList())
+        //                Console.WriteLine($"  ID: {p.productId}  |  {p.productName}  |  {p.price:C}  |  Stock: {p.stockQuantity}");
+
+        //            Console.Write("Enter product ID to add (0 to finish): ");
+        //            int productId = int.Parse(Console.ReadLine());
+        //            if (productId == 0) break;
+
+        //            Product product = context.Products.FirstOrDefault(p => p.productId == productId);
+
+        //            Console.Write("Enter quantity: ");
+        //            int qty = int.Parse(Console.ReadLine());
+
+        //            int orderItemId = context.OrderItems.Count + 1;
+        //            OrderItem item = new OrderItem
+        //            {
+        //                orderItemId = orderItemId,
+        //                orderId = orderId,
+        //                Order = order,        // navigation property
+        //                productId = productId,
+        //                Product = product,       // navigation property
+        //                quantity = qty,
+        //                unitPrice = product.price  // snapshot price at time of ordering
+        //            };
+
+        //            context.OrderItems.Add(item);
+        //            order.OrderItems.Add(item);     // reverse navigation on Order
+        //            product.OrderItems.Add(item);   // reverse navigation on Product
+
+        //            // update stock and running total
+        //            product.stockQuantity -= qty;
+        //            order.totalAmount += item.unitPrice * qty;
+        //        }
+
+        //        Console.WriteLine($"\nOrder placed! Order ID: {orderId}  |  Total: {order.totalAmount:C}");
+        //    }
+
+
+
+
+
+
+
+
+        
+
+
+
+
         //4 writeproductreview
         public static void WriteProductReview()
         {
@@ -200,6 +292,45 @@ namespace E_CommerceSystemERD_Models
            
         }
 
+
+
+        //6: cancel order
+
+        public static void cencelOrder()
+        {
+
+            Console.WriteLine(" enter order id");
+            int orderId = int.Parse(Console.ReadLine());
+
+            var order = context.Orders.FirstOrDefault(o => o.orderId == orderId);
+
+            if (order == null)
+            {
+                Console.WriteLine(" id not found");
+                return;
+            }
+
+            var loadOrder = context.OrderItems.Where(O => O.orderId == orderId).ToList();
+
+            foreach (var item in loadOrder)
+            {
+
+                var relatedProduct = context.Products.FirstOrDefault(p => p.productId == item.productId);
+
+                if (relatedProduct == null)
+                {
+                    Console.WriteLine(" product id not found ");
+                    return;
+                }
+
+                relatedProduct.stockQuantity += loadOrder.quantity;
+            }
+
+            order.status = "cancelled";
+
+        }
+
+
         //7 delete review 
 
         public static void deleteReview()
@@ -220,6 +351,14 @@ namespace E_CommerceSystemERD_Models
              Console.WriteLine(" The review  was deleted successfuly");
 
         }
+
+
+
+
+
+
+
+
 
 
         //8 view all product 
@@ -322,8 +461,9 @@ namespace E_CommerceSystemERD_Models
                         break;
 
                     case 3:
+                        
 
-                    
+
                         break;
 
                     case 4:
