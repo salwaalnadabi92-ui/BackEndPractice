@@ -8,7 +8,8 @@ namespace E_CommerceSystemERD_Models
 
         public static ECommerceContext context = new ECommerceContext();
 
-
+   
+        //1 register user
         public static void RegisterUser()
         {
             Console.WriteLine("=== Register New User ===");
@@ -52,6 +53,8 @@ namespace E_CommerceSystemERD_Models
         }
 
 
+
+        //2:NewProducToCategoy
         public static void NewProducToCategory()
         {
 
@@ -109,7 +112,7 @@ namespace E_CommerceSystemERD_Models
         }
 
 
-
+        //4 writeproductreview
         public static void WriteProductReview()
         {
 
@@ -163,8 +166,40 @@ namespace E_CommerceSystemERD_Models
         }
 
 
+        //5 update product
+        public static void updateProduct()
 
+        {
+            Console.WriteLine(" enter product id");
+            int productId= int.Parse(Console.ReadLine());
 
+            var product=context.Products.FirstOrDefault(p => p.productId == productId);
+
+            if (product == null)
+            {
+                Console.WriteLine("product id not found");
+                return;
+            }
+
+            Console.WriteLine("enter new price");
+            decimal price= decimal.Parse(Console.ReadLine());
+
+            Product updateProduct = new Product
+            {
+                price = price,
+                isAvailable = false,
+
+            };
+
+            context.Products.Add(updateProduct);
+            context.SaveChanges();
+
+            Console.WriteLine("update successfuly");
+            Console.WriteLine(" The new price: "+price );
+           
+        }
+
+        
 
 
 
@@ -241,7 +276,7 @@ namespace E_CommerceSystemERD_Models
                         break;
 
                     case 5:
-                    
+                    updateProduct();
 
                         break;
 
