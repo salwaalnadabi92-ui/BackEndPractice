@@ -125,20 +125,10 @@ namespace E_CommerceSystemERD_Models
         public static void WriteProductReview()
         {
 
-            foreach (User user in context.users)
-            {
-                Console.WriteLine("UserId:" + user.userId + "| Username :" + user.username + "| PasswordHash:" + user.passwordHash + "|FullName :" + user.fullName +
-
-                    "PhoneNumber :" + user.phoneNumber + "|Address:" + user.address + "|RegistrationDate :" + user.registrationDate + "|IsActive:" + user.isActive
-                    );
-            
-
                 Console.WriteLine("Enter user id");
                 int userId = int.Parse(Console.ReadLine());
 
-            }
-
-
+            
             foreach (Product product in context.Products)
                 {
 
@@ -147,23 +137,24 @@ namespace E_CommerceSystemERD_Models
 
             }
 
-            Console.WriteLine("Enter product id");
+            Console.WriteLine("Enter product id to review");
             int productId = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter product id");
+
+            Console.WriteLine("Enter rating (1-5) ");
             int rate= int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter product id");
+            Console.WriteLine("Enter comment (optional):");
             string comment =(Console.ReadLine());
 
 
             Review newreview = new Review
             {
 
-                
+                userId = userId,
                 productId = productId,
                 rating=   rate  ,
-                 comment=  comment  ,
+                comment= string.IsNullOrEmpty(comment) ?null:comment ,
                 reviewDate = DateTime.Now,
 
             };
