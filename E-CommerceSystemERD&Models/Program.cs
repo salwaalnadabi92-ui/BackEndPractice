@@ -286,24 +286,33 @@ namespace E_CommerceSystemERD_Models
 
         public static void fliterProduct()
         {
-              
-            Console.WriteLine("enter category id ");
+
+            List<Category> categories = context.categories.ToList();
+
+            Console.WriteLine("Categories:");
+
+            foreach (Category c in categories)
+                Console.WriteLine($"  ID: {c.categoryId}  |  {c.categoryName}");
+
+
+            Console.WriteLine("Enter category id ");
             int categoryId= int.Parse(Console.ReadLine());
 
 
-            Console.WriteLine("enter minimum price");
+            Console.WriteLine("Enter minimum price");
             decimal   minPrice = decimal.Parse(Console.ReadLine());
 
-             Console.WriteLine("enter maxmum price");
+             Console.WriteLine("Enter maxmum price");
             decimal maxPrice = decimal.Parse(Console.ReadLine());
 
-            var fliter=context.Products.Where(p=>p.categoryId==categoryId  && p.price ==minPrice&& p.price==maxPrice)
+            List<Product> fliter=context.Products.Where(p=>p.categoryId==categoryId  && p.price ==minPrice&& p.price==maxPrice)
                                        .OrderBy(p => p.price)
                                         .ToList();
 
-            foreach(var item in fliter)
+            foreach(Product item in fliter)
             {
-                Console.WriteLine("dispaly :" + fliter);
+                Console.WriteLine($"  ID: {item.productId}  |  {item.productName}  |  {item.price:C}  |  Stock: {item.stockQuantity}");
+            
             }
 
             context.SaveChanges();
