@@ -213,10 +213,10 @@ namespace E_CommerceSystemERD_Models
         public static void cencelOrder()
         {
 
-            Console.WriteLine(" enter order id");
+            Console.WriteLine(" Enter order id to cancel ");
             int orderId = int.Parse(Console.ReadLine());
 
-            var order = context.Orders.FirstOrDefault(o => o.orderId == orderId);
+            Order order = context.Orders.FirstOrDefault(o => o.orderId == orderId);
 
             if (order == null)
             {
@@ -224,26 +224,27 @@ namespace E_CommerceSystemERD_Models
                 return;
             }
 
-            var loadOrder = context.OrderItems.Where(O => O.orderId == orderId).ToList();
+            List<OrderItem> orderItem = context.OrderItems
+                             .Where(o => o.orderId == orderId)
+                             .ToList();
 
-            foreach (var item in loadOrder)
+
+            foreach (OrderItem item in orderItem)
             {
-
-                var relatedProduct = context.Products.FirstOrDefault(p => p.productId == item.productId);
-
-                if (relatedProduct == null)
                 {
-                    Console.WriteLine(" product id not found ");
-                    return;
+
+                    Product product = context.Products.FirstOrDefault(p => p.productId == p.productId);
+
+
+
+                    product.stockQuantity += item.quantity;
                 }
 
-                relatedProduct.stockQuantity += item.quantity;
+                order.status = "cancelled";
+                context.SaveChanges();
+
             }
-
-            order.status = "cancelled";
-
         }
-
 
         //7 delete review 
 
