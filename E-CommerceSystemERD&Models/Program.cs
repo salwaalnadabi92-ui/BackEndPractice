@@ -324,23 +324,32 @@ namespace E_CommerceSystemERD_Models
 
 
         public static void getCategory()
+
         {
-            Console.WriteLine("enter  category id ");
+
+            List<Category> categories = context.categories.ToList();
+            foreach (Category c in categories)
+            Console.WriteLine($"  ID: {c.categoryId}  |  {c.categoryName}");
+
+
+            Console.WriteLine("Enter  category id ");
             int categoryId=int.Parse(Console.ReadLine());
 
-            var category =context.categories
-                .Include(c=>c.Products)
-                .FirstOrDefault(C=>C.categoryId==categoryId);
+            Category category =context.categories
+                               .Include(c=>c.Products)
+                               .FirstOrDefault(C=>C.categoryId==categoryId);
+
 
             Console.WriteLine("category name :"+ category.categoryName);
             Console.WriteLine("description :" + category.description);
+            Console.WriteLine($"Products ({category.Products.Count}):");
 
 
             Console.WriteLine("___ All product___");
 
-            foreach(var item in category.Products)
+            foreach(Product item in category.Products)
             {
-                Console.WriteLine(item.productName);
+                Console.WriteLine($"  ID: {item.productId}  |  {item.productName}  |  {item.price:C}  |  Stock: {item.stockQuantity}");
 
             }
 
