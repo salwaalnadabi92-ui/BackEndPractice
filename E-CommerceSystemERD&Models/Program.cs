@@ -251,10 +251,10 @@ namespace E_CommerceSystemERD_Models
         public static void deleteReview()
         {
 
-            Console.WriteLine(" enter review id");
+            Console.WriteLine(" Enter review id to delete");
             int reviewId= int.Parse(Console.ReadLine());
 
-            var review = context.Reviews.FirstOrDefault(r=>r.reviewId==reviewId);
+            Review review = context.Reviews.FirstOrDefault(r=>r.reviewId==reviewId);
              if(review == null)
             {
                 Console.WriteLine("review id not found ");
