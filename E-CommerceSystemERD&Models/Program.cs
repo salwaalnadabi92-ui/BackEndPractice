@@ -60,11 +60,11 @@ namespace E_CommerceSystemERD_Models
         public static void NewProducToCategory()
         {
 
-            var displayCategories = context.categories.ToList();//dispaly all category
+            List<Category> categories = context.categories.ToList();//dispaly all category
 
-            foreach (var category in displayCategories)
+            foreach (Category c in categories)
             {
-                Console.WriteLine("categoryId:" + category.categoryId + "| categoryName :" + category.categoryName + "| description:" + category.description + "|  imageUrl:" + category.imageUrl);
+                Console.WriteLine("categoryId:" + c.categoryId + "| categoryName :" + c.categoryName + "| description:" + c.description + "|  imageUrl:" + c.imageUrl);
             }
 
             Console.WriteLine("Enter category id: ");//read catogroy selection
@@ -97,7 +97,7 @@ namespace E_CommerceSystemERD_Models
             Product newProduct = new Product//add new object
             {
                 productName = productName,
-                description = description,
+                description = string.IsNullOrWhiteSpace(description)?null: description ,
                 price = price,
                 stockQuantity = stockQuantity,
                 categoryId = categoryId,
