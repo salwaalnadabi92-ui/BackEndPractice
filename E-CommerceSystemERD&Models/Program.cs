@@ -170,10 +170,17 @@ namespace E_CommerceSystemERD_Models
         public static void updateProduct()
 
         {
-            Console.WriteLine(" enter product id");
+
+            List<Product> products = context.Products.ToList();
+            foreach (Product p in products)
+            {
+                Console.WriteLine($"  ID: {p.productId}  |  {p.productName}  |  {p.price:C}  |  Available: {p.isAvailable}");
+
+            }
+            Console.WriteLine(" Enter product id");
             int productId= int.Parse(Console.ReadLine());
 
-            var product=context.Products.FirstOrDefault(p => p.productId == productId);
+            Product product=context.Products.FirstOrDefault(p => p.productId == productId);
 
             if (product == null)
             {
@@ -181,7 +188,7 @@ namespace E_CommerceSystemERD_Models
                 return;
             }
 
-            Console.WriteLine("enter new price");
+            Console.WriteLine("Enter new price");
             decimal price= decimal.Parse(Console.ReadLine());
 
             Product updateProduct = new Product
