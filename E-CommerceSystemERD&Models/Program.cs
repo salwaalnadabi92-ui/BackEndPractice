@@ -271,10 +271,10 @@ namespace E_CommerceSystemERD_Models
         //8 view all product 
         public static void viewAllProduct()
         {
-            var product = context.Products.ToList();
+            List<Product> product = context.Products.ToList();
 
 
-            foreach (var item in product)
+            foreach (Product item in product)
             {
 
                 Console.WriteLine("productId:" + item.productId + "| productName :" + item.productName + "| description :" + item.description + "|stockQuantity  :" + item.stockQuantity + "|imageUrl:" + item.imageUrl + "|categoryId :" + item.categoryId + "|createdAt:" + item.createdAt + "|isAvailable:" + item.isAvailable);
