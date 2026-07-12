@@ -116,13 +116,113 @@ namespace E_CommerceSystemERD_Models
 
         //3 :place an order
 
-        //public static void placeOrder()
- 
+        public static void placeOrder()
+        { 
+
+        Console.Write("Enter user ID: ");
+            int userId = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter shipping address: ");
+            string shippingAddress = Console.ReadLine();
+
+        Console.WriteLine("Payment methods: 1-CreditCard  2-DebitCard  3-PayPal  4-Cash");
+            Console.Write("Choose: ");
+            int payChoice = int.Parse(Console.ReadLine());
+        string paymentMethidChoosen;
+
+            switch(payChoice)
+            {
+                case 1:
+                    paymentMethidChoosen = "CreditCard";
+                    break;
+                case 2:
+                    paymentMethidChoosen = "DebitCard";
+                    break;
+                case 3:
+                    paymentMethidChoosen = "PayPal";
+                    break;
+                case 4:
+                    paymentMethidChoosen = "Cash";
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Defaulting to Cash.");
+                    paymentMethidChoosen = "Cash";
+                    break;
+            }
+
+
+                Order order = new Order
+                {
+                    userId = userId,
+                    orderDate = DateTime.Now,
+                    totalAmount = 0,
+                    status = "Pending",
+                    shippingAddress = shippingAddress,
+                    paymentMethod = paymentMethidChoosen
+                };
+                 context.Orders.Add(order);
+                       context.SaveChanges(); 
+
+
+         bool addingProducts = true;
+            while (addingProducts == true)
+            {
+                List<Product> available = context.Products
+                    .Where(p => p.isAvailable && p.stockQuantity > 0)
+                    .ToList();
+
+                  Console.WriteLine("\nAvailable products:");
+                     foreach (Product p in available)
+                    Console.WriteLine($"  ID: {p.productId}  |  {p.productName}  |  {p.price:C}  |  Stock: {p.stockQuantity}");
+
+                   Console.Write("Enter product ID to add (0 to finish): ");
+                     int productId = int.Parse(Console.ReadLine());
+
+                 Console.Write("Enter quantity: ");
+                int qty = int.Parse(Console.ReadLine());
+             
+              Product product = context.Products.FirstOrDefault(p => p.productId == productId);
+
+
+     
+             // INSERT OrderItem — bridge entity
+                    context.OrderItems.Add(new OrderItem
+                {
+                    orderId = order.orderId,
+                    productId = productId,
+                    quantity = qty,
+                    unitPrice = (decimal)product.price  // price snapshot
+                        });
+
+                // UPDATE product stock and order total (EF Core change tracker handles these)
+                product.stockQuantity -= qty;
+                order.totalAmount += (decimal) product.price * qty;
+
+
+                 Console.WriteLine("do you want to add extra products? Y or N");
+                string response = Console.ReadLine().Trim().ToLower();
+                if (response != "y")
+                {
+                    addingProducts = false;
+                }
+                                 }
+            context.SaveChanges();  // INSERT OrderItem + UPDATE Product + UPDATE Order
+
+
+                Console.WriteLine($"\nOrder placed! Order ID: {order.orderId}  |  Total: {order.totalAmount:C}");
+                            }
 
 
 
-        //4 writeproductreview
-        public static void WriteProductReview()
+
+
+
+
+
+
+
+    //4 writeproductreview
+    public static void WriteProductReview()
         {
 
                 Console.WriteLine("Enter user id");
@@ -411,8 +511,8 @@ namespace E_CommerceSystemERD_Models
                         break;
 
                     case 3:
-                        
 
+                        placeOrder();
 
                         break;
 
